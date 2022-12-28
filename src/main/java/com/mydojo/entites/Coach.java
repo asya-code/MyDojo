@@ -50,7 +50,7 @@ public class Coach {
     private String rank;
 
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinTable(name = "coaches_classes", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "class_id")})
+//    @JoinTable(name = "coaches_lessons", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
 
 //    private Set<Lesson> lessonSet = new HashSet<>();
 

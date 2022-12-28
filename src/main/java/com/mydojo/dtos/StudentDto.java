@@ -1,6 +1,5 @@
 package com.mydojo.dtos;
 
-import com.mydojo.entites.Lesson;
 import com.mydojo.entites.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
