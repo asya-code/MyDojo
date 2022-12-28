@@ -29,12 +29,12 @@ public class Tournament {
     private String description;
 
     @Column
-    private String group;
+    private String art;
 
     @Column
     private String age;
 
-    @Column
+    @Column(name = "\"date\"")
     private Date date;
 
     @Column
@@ -54,8 +54,8 @@ public class Tournament {
             this.description = tournamentDto.getDescription();
         }
 
-        if (tournamentDto.getGroup() != null) {
-            this.group = tournamentDto.getGroup();
+        if (tournamentDto.getArt() != null) {
+            this.art = tournamentDto.getArt();
         }
 
         if (tournamentDto.getAge() != null) {

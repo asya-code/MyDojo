@@ -15,12 +15,12 @@ import java.util.Set;
 public class LessonDto implements Serializable {
     private Long id;
     private String className;
-    private String group;
+    private String art;
     private String day;
     private Time time;
     private String description;
 
-    private Set<StudentDto> studentDtoSet;
+//    private Set<StudentDto> studentDtoSet;
 
     public LessonDto(Lesson lesson){
         if (lesson.getId() != null) {
@@ -31,8 +31,8 @@ public class LessonDto implements Serializable {
             this.className = lesson.getClassName();
         }
 
-        if (lesson.getGroup() != null) {
-            this.group = lesson.getGroup();
+        if (lesson.getArt() != null) {
+            this.art = lesson.getArt();
         }
 
         if (lesson.getDay() != null) {

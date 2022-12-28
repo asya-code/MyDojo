@@ -25,7 +25,7 @@ public class Lesson {
     private String className;
 
     @Column
-    private String group;
+    private String art;
 
     @Column
     private String day;
@@ -48,8 +48,8 @@ public class Lesson {
             this.className = lessonDto.getClassName();
         }
 
-        if (lessonDto.getGroup() != null) {
-            this.group = lessonDto.getGroup();
+        if (lessonDto.getArt() != null) {
+            this.art = lessonDto.getArt();
         }
 
         if (lessonDto.getDay() != null) {

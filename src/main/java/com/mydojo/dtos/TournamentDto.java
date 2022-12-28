@@ -21,7 +21,7 @@ public class TournamentDto implements Serializable {
     private Long id;
     private String tournamentName;
     private String description;
-    private String group;
+    private String art;
     private String age;
     private Date date;
     private Time time;
@@ -40,8 +40,8 @@ public class TournamentDto implements Serializable {
             this.description = tournament.getDescription();
         }
 
-        if (tournament.getGroup() != null) {
-            this.group = tournament.getGroup();
+        if (tournament.getArt() != null) {
+            this.art = tournament.getArt();
         }
 
         if (tournament.getAge() != null) {
