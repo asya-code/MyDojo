@@ -4,6 +4,7 @@ import com.mydojo.dtos.TournamentDto;
 import jakarta.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,6 +41,11 @@ public class Tournament {
     @Column
     private Time time;
 
+    @ManyToMany(mappedBy = "tournamentSet")
+    private Set<Coach> coachSet;
+
+    @ManyToMany(mappedBy = "tournamentSet")
+    private Set<Student> studentSet;
 
     public Tournament(TournamentDto tournamentDto) {
         if (tournamentDto.getId() != null) {

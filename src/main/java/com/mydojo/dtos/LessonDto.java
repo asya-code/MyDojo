@@ -20,7 +20,8 @@ public class LessonDto implements Serializable {
     private Time time;
     private String description;
 
-//    private Set<StudentDto> studentDtoSet;
+    private Set<StudentDto> studentDtoSet;
+    private Set<CoachDto> coachDtoSet;
 
     public LessonDto(Lesson lesson){
         if (lesson.getId() != null) {

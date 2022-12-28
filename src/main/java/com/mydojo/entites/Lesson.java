@@ -36,9 +36,11 @@ public class Lesson {
     @Column
     private String description;
 
-//    @ManyToMany(mappedBy = "lessonSet")
-//    private Set<Student> studentsSet;
+    @ManyToMany(mappedBy = "lessonSet")
+    private Set<Student> studentSet;
 
+    @ManyToMany(mappedBy = "lessonSet")
+    private Set<Coach> coachSet;
     public Lesson(LessonDto lessonDto){
         if (lessonDto.getId() != null) {
             this.id = lessonDto.getId();

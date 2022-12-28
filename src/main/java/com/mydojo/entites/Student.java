@@ -47,10 +47,13 @@ public class Student {
     @Column
     private String rank;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-//    @JoinTable(name = "students_lessons", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
-//    private Set<Lesson> lessonSet = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "students_lessons", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
+    private Set<Lesson> lessonSet = new HashSet<>();
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "students_tournaments", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
+    private Set<Lesson> tournamentSet = new HashSet<>();
     public Student(StudentDto studentDto) {
         if (studentDto.getId() != null) {
             this.id = studentDto.getId();

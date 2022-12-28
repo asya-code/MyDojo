@@ -49,10 +49,14 @@ public class Coach {
     @Column
     private String rank;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinTable(name = "coaches_lessons", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "coaches_lessons", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
+    private Set<Lesson> lessonSet = new HashSet<>();
 
-//    private Set<Lesson> lessonSet = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "coaches_tournaments", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
+
+    private Set<Tournament> tournamentSet = new HashSet<>();
 
     public Coach (CoachDto coachDto) {
         if (coachDto.getId() != null) {

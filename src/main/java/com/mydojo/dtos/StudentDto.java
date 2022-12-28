@@ -26,7 +26,8 @@ public class StudentDto implements Serializable {
     private Date started;
     private String rank;
 
-//    private Set<LessonDto> lessonDtoSet;
+    private Set<LessonDto> lessonDtoSet;
+    private Set<TournamentDto> tournamentDtoSet;
 
     public StudentDto(Student student){
         if (student.getId() != null) {

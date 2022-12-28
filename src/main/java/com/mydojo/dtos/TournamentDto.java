@@ -26,6 +26,8 @@ public class TournamentDto implements Serializable {
     private Date date;
     private Time time;
 
+    private Set<StudentDto> studentDtoSet;
+    private Set<CoachDto> coachDtoSet;
 
     public TournamentDto(Tournament tournament) {
         if (tournament.getId() != null) {
