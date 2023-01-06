@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentDto implements Serializable {
-    private Long id;
+    private Long studentId;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -31,7 +31,7 @@ public class StudentDto implements Serializable {
 
     public StudentDto(Student student){
         if (student.getId() != null) {
-            this.id = student.getId();
+            this.studentId = student.getId();
         }
 
         if (student.getFirstName() != null) {

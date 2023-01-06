@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long tournametId;
 
     @Column
     private String tournamentName;
@@ -48,8 +48,8 @@ public class Tournament {
     private Set<Student> studentSet;
 
     public Tournament(TournamentDto tournamentDto) {
-        if (tournamentDto.getId() != null) {
-            this.id = tournamentDto.getId();
+        if (tournamentDto.getTournamentId() != null) {
+            this.tournametId = tournamentDto.getTournamentId();
         }
 
         if (tournamentDto.getTournamentName() != null) {

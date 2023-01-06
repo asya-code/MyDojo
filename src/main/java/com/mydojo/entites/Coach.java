@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Coach {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long coachId;
 
     @Column
     private String firstName;
@@ -59,8 +59,8 @@ public class Coach {
     private Set<Tournament> tournamentSet = new HashSet<>();
 
     public Coach (CoachDto coachDto) {
-        if (coachDto.getId() != null) {
-                this.id = coachDto.getId();
+        if (coachDto.getCoachId() != null) {
+                this.coachId = coachDto.getCoachId();
             }
         if (coachDto.getFirstName() != null) {
             this.firstName = coachDto.getFirstName();

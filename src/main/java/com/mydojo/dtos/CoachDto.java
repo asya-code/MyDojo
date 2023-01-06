@@ -17,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CoachDto implements Serializable {
-    private Long id;
+    private Long coachId;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -32,8 +32,8 @@ public class CoachDto implements Serializable {
     private Set<TournamentDto> tournamentDtoSet;
 
     public CoachDto(Coach coach){
-        if (coach.getId() != null) {
-            this.id = coach.getId();
+        if (coach.getCoachId() != null) {
+            this.coachId = coach.getCoachId();
         }
 
         if (coach.getFirstName() != null) {

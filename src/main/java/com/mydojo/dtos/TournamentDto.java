@@ -12,13 +12,14 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TournamentDto implements Serializable {
-    private Long id;
+    private Long tournamentId;
     private String tournamentName;
     private String description;
     private String art;
@@ -30,8 +31,8 @@ public class TournamentDto implements Serializable {
     private Set<CoachDto> coachDtoSet;
 
     public TournamentDto(Tournament tournament) {
-        if (tournament.getId() != null) {
-            this.id = tournament.getId();
+        if (tournament.getTournametId() != null) {
+            this.tournamentId = tournament.getTournametId();
         }
 
         if (tournament.getTournamentName() != null) {
@@ -57,7 +58,24 @@ public class TournamentDto implements Serializable {
         if (tournament.getTime() != null) {
             this.time = tournament.getTime();
         }
+    }
 
+    public Set<Coach> getCoachSet(){
+        Set <Coach> coachSet = new HashSet<>();
+        for (CoachDto each : coachDtoSet){
+            Coach temporaryCoach = new Coach(each);
+            coachSet.add(temporaryCoach);
+        }
+        return coachSet;
+    }
+
+    public Set<Student> getStudentSet() {
+        Set <Student> studentSet = new HashSet<>();
+        for (StudentDto each : studentDtoSet) {
+            Student temporaryStudent = new Student(each);
+            studentSet.add(temporaryStudent);
+        }
+        return studentSet;
     }
 }
 

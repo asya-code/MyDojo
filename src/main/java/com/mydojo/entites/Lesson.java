@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long lessonId;
 
     @Column
-    private String className;
+    private String lessonName;
 
     @Column
     private String art;
@@ -42,12 +42,12 @@ public class Lesson {
     @ManyToMany(mappedBy = "lessonSet")
     private Set<Coach> coachSet;
     public Lesson(LessonDto lessonDto){
-        if (lessonDto.getId() != null) {
-            this.id = lessonDto.getId();
+        if (lessonDto.getLessonId() != null) {
+            this.lessonId = lessonDto.getLessonId();
         }
 
-        if (lessonDto.getClassName() != null) {
-            this.className = lessonDto.getClassName();
+        if (lessonDto.getLessonName() != null) {
+            this.lessonName = lessonDto.getLessonName();
         }
 
         if (lessonDto.getArt() != null) {
@@ -66,5 +66,4 @@ public class Lesson {
             this.description = lessonDto.getDescription().toString();
         }
     }
-
 }

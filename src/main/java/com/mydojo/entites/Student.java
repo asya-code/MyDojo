@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long studentId;
 
     @Column
     private String firstName;
@@ -55,8 +55,8 @@ public class Student {
     @JoinTable(name = "students_tournaments", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
     private Set<Lesson> tournamentSet = new HashSet<>();
     public Student(StudentDto studentDto) {
-        if (studentDto.getId() != null) {
-            this.id = studentDto.getId();
+        if (studentDto.getStudentId() != null) {
+            this.studentId = studentDto.getStudentId();
         }
 
         if (studentDto.getFirstName() != null) {
