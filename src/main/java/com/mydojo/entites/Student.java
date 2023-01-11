@@ -53,7 +53,9 @@ public class Student {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "students_tournaments", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
+
     private Set<Lesson> tournamentSet = new HashSet<>();
+
     public Student(StudentDto studentDto) {
         if (studentDto.getStudentId() != null) {
             this.studentId = studentDto.getStudentId();

@@ -19,6 +19,7 @@ public class CoachController {
 
     @PostMapping("/registerCoach")
     public List<String> addCoach(@RequestBody CoachDto coachDto) {
+        System.out.println(coachDto.toString());
         String passHash = passwordEncoder.encode(coachDto.getPassword());
         coachDto.setPassword(passHash);
         return coachService.addCoach(coachDto);

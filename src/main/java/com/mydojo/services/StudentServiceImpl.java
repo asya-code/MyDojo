@@ -1,6 +1,5 @@
 package com.mydojo.services;
 
-import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.StudentDto;
 import com.mydojo.entites.Student;
 import com.mydojo.repositories.StudentRepository;
@@ -47,6 +46,7 @@ public class StudentServiceImpl implements StudentService {
         }
         return response;
     }
+
     @Override
     public List<StudentDto> getStudentList(){
         return studentRepository.findAll().stream().map(entity -> {
@@ -56,6 +56,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Optional<StudentDto> getStudentById(Long studentId) {
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (studentOptional.isPresent()) {
+            return Optional.of(new StudentDto(studentOptional.get()));
+        }
         return Optional.empty();
     }
 }

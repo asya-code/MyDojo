@@ -46,6 +46,7 @@ public class CoachServiceImpl implements CoachService {
             }
             return response;
     }
+
     @Override
     public List<CoachDto> getCoachList(){
         return coachRepository.findAll().stream().map(entity -> {

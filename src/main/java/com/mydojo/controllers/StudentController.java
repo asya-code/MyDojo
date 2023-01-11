@@ -10,11 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/api/students")
 public class StudentController {
     @Autowired
     private StudentService studentService;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
