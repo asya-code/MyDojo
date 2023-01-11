@@ -1,12 +1,8 @@
 package com.mydojo.services;
 
 import com.mydojo.dtos.CoachDto;
-import com.mydojo.dtos.LessonDto;
 import com.mydojo.entites.Coach;
-import com.mydojo.entites.Lesson;
 import com.mydojo.repositories.CoachRepository;
-import com.mydojo.repositories.LessonRepository;
-import com.mydojo.repositories.TournamentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,5 +45,20 @@ public class CoachServiceImpl implements CoachService {
                 response.add("Email or password is incorrect");
             }
             return response;
+    }
+    @Override
+    public List<CoachDto> getCoachList(){
+        return coachRepository.findAll().stream().map(entity -> {
+            return new CoachDto(entity);
+        }).toList();
+    }
+
+    @Override
+    public Optional<CoachDto> getCoachById(Long coachId) {
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+        if (coachOptional.isPresent()) {
+            return Optional.of(new CoachDto(coachOptional.get()));
+        }
+        return Optional.empty();
     }
 }

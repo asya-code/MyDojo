@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament, Long> {
-    List<Tournament> findAllByCoachEquals(Coach coach);
-    List<Tournament> findAllByStudentEquals(Student student);
+    List<Tournament> findByCoachSet_CoachId(Long coachId);
+    List<Tournament> findByStudentSet_StudentId(Long studentId);
 }

@@ -4,6 +4,7 @@ import com.mydojo.dtos.TournamentDto;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TournamentService {
     @Transactional
@@ -15,7 +16,11 @@ public interface TournamentService {
     @Transactional
     void updateTournamentByCoach(TournamentDto tournamentDto);
 
-    List<TournamentDto> getAllTournamentsByCoach(Long coachId);
+    List<TournamentDto> getAllTournamentByCoach(Long coachId);
 
     List<TournamentDto> getAllTournamentByStudent(Long studentId);
+
+    Optional<TournamentDto> getTournamentById(Long tournamentId);
+
+    List<TournamentDto> getTournamentList();
 }

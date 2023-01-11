@@ -1,5 +1,6 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.StudentDto;
 import com.mydojo.entites.Student;
 import com.mydojo.repositories.StudentRepository;
@@ -26,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
         List<String> response = new ArrayList<>();
         Student student = new Student(studentDto);
         studentRepository.saveAndFlush(student);
-        response.add("Coach Added Successfully");
+        response.add("Student Added Successfully");
         return response;
     }
 
@@ -45,5 +46,16 @@ public class StudentServiceImpl implements StudentService {
             response.add("Email or password is incorrect");
         }
         return response;
+    }
+    @Override
+    public List<StudentDto> getStudentList(){
+        return studentRepository.findAll().stream().map(entity -> {
+            return new StudentDto(entity);
+        }).toList();
+    }
+
+    @Override
+    public Optional<StudentDto> getStudentById(Long studentId) {
+        return Optional.empty();
     }
 }

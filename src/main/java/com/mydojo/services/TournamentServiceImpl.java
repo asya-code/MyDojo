@@ -1,5 +1,6 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.TournamentDto;
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Student;
@@ -65,10 +66,10 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
-    public List<TournamentDto> getAllTournamentsByCoach(Long coachId) {
+    public List<TournamentDto> getAllTournamentByCoach(Long coachId) {
         Optional<Coach> coachOptional = coachRepository.findById(coachId);
         if (coachOptional.isPresent()) {
-            List<Tournament> tournamentList = tournamentRepository.findAllByCoachEquals(coachOptional.get());
+            List<Tournament> tournamentList = tournamentRepository.findByCoachSet_CoachId(coachOptional.get().getCoachId());
             return tournamentList.stream().map(tournament -> new TournamentDto(tournament)).collect(Collectors.toList());
         }
         return Collections.emptyList();
@@ -78,9 +79,21 @@ public class TournamentServiceImpl implements TournamentService {
     public List<TournamentDto> getAllTournamentByStudent(Long studentId) {
         Optional<Student> studentOptional = studentRepository.findById(studentId);
         if (studentOptional.isPresent()) {
-            List<Tournament> tournamentList = tournamentRepository.findAllByStudentEquals(studentOptional.get());
+            List<Tournament> tournamentList = tournamentRepository.findByStudentSet_StudentId(studentOptional.get().getStudentId());
             return tournamentList.stream().map(tournament -> new TournamentDto(tournament)).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public Optional<TournamentDto> getTournamentById(Long tournamentId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<TournamentDto> getTournamentList() {
+        return tournamentRepository.findAll().stream().map(entity -> {
+            return new TournamentDto(entity);
+        }).toList();
     }
 }

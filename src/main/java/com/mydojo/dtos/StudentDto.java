@@ -30,8 +30,8 @@ public class StudentDto implements Serializable {
     private Set<TournamentDto> tournamentDtoSet;
 
     public StudentDto(Student student){
-        if (student.getId() != null) {
-            this.studentId = student.getId();
+        if (student.getStudentId() != null) {
+            this.studentId = student.getStudentId();
         }
 
         if (student.getFirstName() != null) {

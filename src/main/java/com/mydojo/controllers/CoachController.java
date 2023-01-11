@@ -4,12 +4,10 @@ import com.mydojo.dtos.CoachDto;
 import com.mydojo.services.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/coaches")
@@ -26,7 +24,26 @@ public class CoachController {
         return coachService.addCoach(coachDto);
     }
 
-    @PostMapping("")
+    @PostMapping("/login")
+    public List<String> coachLogin(@RequestBody CoachDto coachDto) {
+        return coachService.coachLogin(coachDto);
+    }
+
+    @GetMapping("")
+    public List<CoachDto> getAllCoaches(){
+
+        return coachService.getCoachList();
+    }
+
+    @GetMapping("/{coachId}")
+    public Optional <CoachDto> getCoachById(@PathVariable Long coachId){
+       return coachService.getCoachById(coachId);
+    }
+
+    // do I need this?
+//    @GetMapping("/{coachId}/my-profile")
+//    public Optional<CoachDto>
+
 }
 
 
