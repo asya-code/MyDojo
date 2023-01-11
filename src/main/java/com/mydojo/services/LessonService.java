@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public interface LessonService {
     @Transactional
-    void createLesson(LessonDto lessonDto, Long coachId);
+//    void addNewLesson(LessonDto lessonDto, Long coachId);
+    List<String> addNewLesson(LessonDto lessonDto, Long coachId);
 
     @Transactional
     void deleteLessonByIdCoach(Long lessonId);

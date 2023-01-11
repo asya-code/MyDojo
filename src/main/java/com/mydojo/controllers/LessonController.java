@@ -34,10 +34,16 @@ public class LessonController {
     }
 
     // this should be available only for logged in coaches
+//    @PostMapping("/{coachId}/new-class")
+//    public void createNewClass(@RequestBody LessonDto lessonDto, @PathVariable Long coachId){
+//        lessonService.createLesson(lessonDto, coachId);
+//        System.out.println("Class added successfully");
+//    }
+
     @PostMapping("/{coachId}/new-class")
-    public void createNewClass(@RequestBody LessonDto lessonDto, @PathVariable Long coachId){
-        lessonService.createLesson(lessonDto, coachId);
-        System.out.println("Class added successfully");
+    public List<String> addNewLesson(@RequestBody LessonDto lessonDto, @PathVariable Long coachId) {
+        System.out.println(lessonDto.toString());
+        return lessonService.addNewLesson(lessonDto,coachId);
     }
 
     @GetMapping("")

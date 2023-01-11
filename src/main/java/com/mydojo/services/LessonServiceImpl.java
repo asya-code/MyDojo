@@ -12,10 +12,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +28,8 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public void createLesson(LessonDto lessonDto, Long coachId) {
+    public List<String> addNewLesson(LessonDto lessonDto, Long coachId) {
+        List<String> response = new ArrayList<>();
         Optional<Coach> coachOptional = coachRepository.findById(coachId);
         Lesson lesson = new Lesson(lessonDto);
         if (coachOptional.isPresent()){
@@ -41,7 +39,20 @@ public class LessonServiceImpl implements LessonService {
             lesson.getCoachSet().add(coachOptional.get());
         }
         lessonRepository.saveAndFlush(lesson);
+        response.add("Class Added Successfully");
+        return response;
     }
+//    public void addNewLesson(LessonDto lessonDto, Long coachId) {
+//        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+//        Lesson lesson = new Lesson(lessonDto);
+//        if (coachOptional.isPresent()){
+//            if(lesson.getCoachSet() == null){
+//                lesson.setCoachSet(new HashSet<>());
+//            }
+//            lesson.getCoachSet().add(coachOptional.get());
+//        }
+//        lessonRepository.saveAndFlush(lesson);
+//    }
 
     @Override
     @Transactional
