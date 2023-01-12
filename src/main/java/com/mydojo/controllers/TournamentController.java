@@ -1,8 +1,6 @@
 package com.mydojo.controllers;
 
-import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.TournamentDto;
-import com.mydojo.repositories.LessonRepository;
 import com.mydojo.repositories.TournamentRepository;
 import com.mydojo.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +40,9 @@ public class TournamentController {
 
     // this should be available only for logged in coaches
     @PostMapping("/{coachId}/new-tournament")
-    public void createNewTournament(@RequestBody TournamentDto tournamentDto, @PathVariable Long coachId){
-        tournamentService.createTournament(tournamentDto, coachId);
+    public List<String> createNewTournament(@RequestBody TournamentDto tournamentDto, @PathVariable Long coachId){
         System.out.println("Tournament added successfully");
+        return tournamentService.addNewTournament(tournamentDto, coachId);
     }
 
     @PutMapping()

@@ -7,13 +7,14 @@ import jakarta.persistence.*;
 import java.sql.Time;
 import java.util.Set;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 @Entity
 @Table(name="Lessons")
 @Data
+//@Getter
+//@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Lesson {

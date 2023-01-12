@@ -2,13 +2,11 @@ package com.mydojo.dtos;
 
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Tournament;
-import com.mydojo.entites.Lesson;
 import com.mydojo.entites.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
@@ -31,8 +29,8 @@ public class TournamentDto implements Serializable {
     private Set<CoachDto> coachDtoSet;
 
     public TournamentDto(Tournament tournament) {
-        if (tournament.getTournametId() != null) {
-            this.tournamentId = tournament.getTournametId();
+        if (tournament.getTournamentId() != null) {
+            this.tournamentId = tournament.getTournamentId();
         }
 
         if (tournament.getTournamentName() != null) {

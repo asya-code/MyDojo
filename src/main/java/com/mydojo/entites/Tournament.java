@@ -1,16 +1,16 @@
 package com.mydojo.entites;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mydojo.dtos.TournamentDto;
 import jakarta.persistence.*;
-import java.sql.Date;
+
 import java.sql.Time;
+import java.util.Date;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tournametId;
+    private Long tournamentId;
 
     @Column
     private String tournamentName;
@@ -36,6 +36,7 @@ public class Tournament {
     private String age;
 
     @Column(name = "\"date\"")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date date;
 
     @Column
@@ -49,7 +50,7 @@ public class Tournament {
 
     public Tournament(TournamentDto tournamentDto) {
         if (tournamentDto.getTournamentId() != null) {
-            this.tournametId = tournamentDto.getTournamentId();
+            this.tournamentId = tournamentDto.getTournamentId();
         }
 
         if (tournamentDto.getTournamentName() != null) {
@@ -69,7 +70,7 @@ public class Tournament {
         }
 
         if (tournamentDto.getDate() != null) {
-            this.date = (Date) tournamentDto.getDate();
+            this.date = tournamentDto.getDate();
         }
 
         if (tournamentDto.getTime() != null) {

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TournamentService {
     @Transactional
-    void createTournament(TournamentDto tournamentDto, Long coachId);
+    List<String> addNewTournament(TournamentDto tournamentDto, Long coachId);
 
     @Transactional
     void deleteTournamentByIdCoach(Long tournamentId);

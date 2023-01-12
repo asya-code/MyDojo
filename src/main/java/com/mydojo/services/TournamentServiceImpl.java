@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,13 +30,21 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     @Transactional
-    public void createTournament(TournamentDto tournamentDto, Long coachId) {
+    public List<String> addNewTournament(TournamentDto tournamentDto, Long coachId) {
+        List<String> response = new ArrayList<>();
         Optional<Coach> coachOptional = coachRepository.findById(coachId);
         Tournament tournament = new Tournament(tournamentDto);
         if (coachOptional.isPresent()) {
+            if (tournament.getCoachSet() == null){
+                HashSet newCoachSetTournament = new HashSet<>();
+                newCoachSetTournament.add(coachOptional.get());
+                tournament.setCoachSet(newCoachSetTournament);
+            }
             tournament.getCoachSet().add(coachOptional.get());
         }
         tournamentRepository.saveAndFlush(tournament);
+        response.add("Tournament Added Successfully");
+        return response;
     }
 
     @Override
