@@ -23,8 +23,8 @@ public class LessonDto implements Serializable {
     private Time time;
     private String description;
 
-    private Set<StudentDto> studentDtoSet;
-    private Set<CoachDto> coachDtoSet;
+    private Set<StudentDto> studentDtoSet = new HashSet<>();
+    private Set<CoachDto> coachDtoSet = new HashSet<>();
 
     public LessonDto(Lesson lesson){
         if (lesson.getLessonId() != null) {
@@ -50,23 +50,33 @@ public class LessonDto implements Serializable {
         if (lesson.getDescription() != null) {
             this.description = lesson.getDescription();
         }
-    }
 
-    public Set<Coach> getCoachSet(){
-        Set <Coach> coachSet = new HashSet<>();
-        for (CoachDto each : coachDtoSet){
-            Coach temporaryCoach = new Coach(each);
-            coachSet.add(temporaryCoach);
-        }
-        return coachSet;
+//        if(lesson.getCoachSet() == null) {
+//            Set<CoachDto> newCoachDtoSet = new HashSet<>();
+//            System.out.println(newCoachDtoSet);
+//            this.coachDtoSet = newCoachDtoSet;
+//        }
+//        if(lesson.getStudentSet() == null) {
+//            Set<StudentDto> newStudentSet = new HashSet<>();
+//            this.studentDtoSet = newStudentSet;
+//        }
     }
-
-    public Set<Student> getStudentSet() {
-        Set <Student> studentSet = new HashSet<>();
-        for (StudentDto each : studentDtoSet) {
-            Student temporaryStudent = new Student(each);
-            studentSet.add(temporaryStudent);
-        }
-        return studentSet;
-    }
+//
+//    public Set<Coach> getCoachSet(){
+//        Set <Coach> coachSet = new HashSet<>();
+//        for (CoachDto each : coachDtoSet){
+//            Coach temporaryCoach = new Coach(each);
+//            coachSet.add(temporaryCoach);
+//        }
+//        return coachSet;
+//    }
+//
+//    public Set<Student> getStudentSet() {
+//        Set <Student> studentSet = new HashSet<>();
+//        for (StudentDto each : studentDtoSet) {
+//            Student temporaryStudent = new Student(each);
+//            studentSet.add(temporaryStudent);
+//        }
+//        return studentSet;
+//    }
 }

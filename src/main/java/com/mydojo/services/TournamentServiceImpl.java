@@ -1,6 +1,5 @@
 package com.mydojo.services;
 
-import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.TournamentDto;
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Student;
@@ -98,8 +97,14 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     public List<TournamentDto> getTournamentList() {
-        return tournamentRepository.findAll().stream().map(entity -> {
-            return new TournamentDto(entity);
-        }).toList();
+//        return tournamentRepository.findAll().stream().map(entity -> {
+//            return new TournamentDto(entity);
+//        }).toList();
+        List<Tournament> tempList = tournamentRepository.findAll();
+        List<TournamentDto> dtoList = new ArrayList<>();
+        for (Tournament tournament:tempList
+             ) {dtoList.add(new TournamentDto(tournament));
+        }
+        return dtoList;
     }
 }

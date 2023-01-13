@@ -1,5 +1,6 @@
 package com.mydojo.controllers;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.LessonDto;
 import com.mydojo.repositories.LessonRepository;
 import com.mydojo.services.LessonService;
@@ -38,18 +39,23 @@ public class LessonController {
         return lessonService.getLessonById(lessonId);
     }
 
-    // this should be available only for logged in coaches
-    @PostMapping("/{coachId}/new-class")
-    public List<String> addNewLesson(@RequestBody LessonDto lessonDto, @PathVariable Long coachId) {
-        System.out.println(lessonDto.toString());
-        return lessonService.addNewLesson(lessonDto,coachId);
+    @PutMapping("/{lessonId}")
+    public void updateLesson(@PathVariable Long lessonId, @RequestBody LessonDto lessonDto){
+        lessonService.updateLesson(lessonDto);
+    }
+
+    @PostMapping("/{lessonId}/coaches")
+    public void addCoachToSet(@PathVariable Long lessonId, @RequestBody CoachDto coachDto){
+        lessonService.addCoachToSet(lessonId, coachDto.getCoachId());
     }
 
 
-    @PutMapping
+
     // this should be available only for logged in coaches
-    public void updateLesson(@RequestBody LessonDto lessonDto){
-        lessonService.updateLessonByCoach(lessonDto);
+    @PostMapping("/new-class")
+    public List<String> addNewLesson(@RequestBody LessonDto lessonDto) {
+        System.out.println(lessonDto.toString());
+        return lessonService.addNewLesson(lessonDto);
     }
 
     // this should be available only for logged in coaches

@@ -1,6 +1,7 @@
 package com.mydojo.services;
 
 import com.mydojo.dtos.TournamentDto;
+import com.mydojo.entites.Tournament;
 import jakarta.transaction.Transactional;
 
 import java.util.List;

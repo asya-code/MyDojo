@@ -1,6 +1,5 @@
 package com.mydojo.services;
 
-import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.LessonDto;
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Lesson;
@@ -28,26 +27,46 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public List<String> addNewLesson(LessonDto lessonDto, Long coachId) {
+    public List<String> addNewLesson(LessonDto lessonDto) {
         List<String> response = new ArrayList<>();
-        Optional<Coach> coachOptional = coachRepository.findById(coachId);
-        System.out.println(coachOptional.isPresent());
         Lesson lesson = new Lesson(lessonDto);
-        System.out.println(lesson);
-        if (coachOptional.isPresent()){
-            if(lesson.getCoachSet() == null){
-                HashSet set = new HashSet<>();
-                set.add(coachOptional.get());
-                lesson.setCoachSet(set);
-//                System.out.println(lesson);
-            } else {
-                lesson.getCoachSet().add(coachOptional.get());
-                System.out.println(lesson);
-            }
 
-        }
+        //System.out.println(lesson);
+
+//        if(lesson.getCoachSet() == null) {
+//            HashSet coachSet = new HashSet<>();
+//            lesson.setCoachSet(coachSet);
+//        }
+//        if(lesson.getStudentSet() == null) {
+//            HashSet studentSet = new HashSet<>();
+//            lesson.setStudentSet(studentSet);
+//        }
+
         lessonRepository.saveAndFlush(lesson);
         System.out.println(lesson);
+
+
+//        } else{
+//            Set<Coach> coachSet = lesson.getCoachSet();
+//        }
+//        if (coachOptional.isPresent()) {
+//            coachSet.add(coachOptional.get());
+//            lesson.setCoachSet(coachSet);
+//        }
+//        if (coachOptional.isPresent()){
+//            if(lesson.getCoachSet() == null){
+//                HashSet set = new HashSet<>();
+//                set.add(coachOptional.get());
+//                lesson.setCoachSet(set);
+////                System.out.println(lesson);
+//            } else {
+//                lesson.getCoachSet().add(coachOptional.get());
+//                System.out.println(lesson);
+//            }
+////
+//        }
+//        lessonRepository.saveAndFlush(lesson);
+//        System.out.println(lesson);
 
         response.add("Class Added Successfully");
         return response;
@@ -73,7 +92,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public void updateLessonByCoach(LessonDto lessonDto){
+    public void updateLesson(LessonDto lessonDto){
         Optional<Lesson> lessonOptional = lessonRepository.findById(lessonDto.getLessonId());
         lessonOptional.ifPresent(lesson -> {
             lesson.setLessonName(lessonDto.getLessonName());
@@ -81,10 +100,30 @@ public class LessonServiceImpl implements LessonService {
             lesson.setDay(lessonDto.getDay());
             lesson.setTime(lessonDto.getTime());
             lesson.setDescription(lessonDto.getDescription());
-            lesson.setCoachSet(lessonDto.getCoachSet());
-            lesson.setStudentSet(lessonDto.getStudentSet());
+//            lesson.setCoachSet(lessonDto.getCoachSet());
+//            lesson.setStudentSet(lessonDto.getStudentSet());
             lessonRepository.saveAndFlush(lesson);
         });
+    }
+
+    @Transactional
+    @Override
+    public void addCoachToSet(Long lessonId, Long coachId){
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        if (lessonOptional.isPresent()) {
+            Optional<Coach> coachOptional = coachRepository.findById(coachId);
+            if (coachOptional.isPresent()){
+                Set<Coach> coachSet;
+                if (lessonOptional.get().getCoachSet() == null){
+                    coachSet = new HashSet<>();
+                } else {
+                    coachSet = lessonOptional.get().getCoachSet();
+                }
+                coachSet.add(coachOptional.get());
+                lessonOptional.get().setCoachSet(coachSet);
+                lessonRepository.saveAndFlush(lessonOptional.get());
+            }
+        }
     }
 
     @Override

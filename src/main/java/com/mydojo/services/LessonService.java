@@ -9,13 +9,16 @@ import java.util.Optional;
 public interface LessonService {
     @Transactional
 //    void addNewLesson(LessonDto lessonDto, Long coachId);
-    List<String> addNewLesson(LessonDto lessonDto, Long coachId);
+    List<String> addNewLesson(LessonDto lessonDto);
 
     @Transactional
     void deleteLessonByIdCoach(Long lessonId);
 
     @Transactional
-    void updateLessonByCoach(LessonDto lessonDto);
+    void updateLesson(LessonDto lessonDto);
+
+    @Transactional
+    void addCoachToSet(Long lessonId, Long coachId);
 
     List<LessonDto> getAllLessonByCoach(Long coachId);
 
