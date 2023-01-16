@@ -108,22 +108,23 @@ public class LessonServiceImpl implements LessonService {
 
     @Transactional
     @Override
-    public void addCoachToSet(Long lessonId, Long coachId){
+    public void addCoachToSet(Long lessonId, Long coachId) {
         Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
-        if (lessonOptional.isPresent()) {
-            Optional<Coach> coachOptional = coachRepository.findById(coachId);
-            if (coachOptional.isPresent()){
-                Set<Coach> coachSet;
-                if (lessonOptional.get().getCoachSet() == null){
-                    coachSet = new HashSet<>();
-                } else {
-                    coachSet = lessonOptional.get().getCoachSet();
-                }
-                coachSet.add(coachOptional.get());
-                lessonOptional.get().setCoachSet(coachSet);
-                lessonRepository.saveAndFlush(lessonOptional.get());
-            }
+        if (!lessonOptional.isPresent()) {
+            System.out.println("addCoachToSet lesson not found: " + lessonId);
+            return;
         }
+
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+        if (!coachOptional.isPresent()) {
+            System.out.println("addCoachToSet coach not found: " + coachId);
+            return;
+        }
+
+        Lesson lesson = lessonOptional.get();
+        lesson.getCoachSet().add(coachOptional.get());
+        coachOptional.get().getLessonSet().add(lesson);
+        lessonRepository.saveAndFlush(lesson);
     }
 
     @Override
@@ -156,8 +157,13 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public List<LessonDto> getLessonList(){
+    public List<LessonDto> getLessonList() {
         return lessonRepository.findAll().stream().map(entity -> {
+            for (Coach coach : entity.getCoachSet()) {
+                // ignore
+                System.out.println("!!!!!  Found coach " + coach.getCoachId()
+                        + " for lesson " + entity.getLessonId());
+            }
             return new LessonDto(entity);
         }).toList();
     }

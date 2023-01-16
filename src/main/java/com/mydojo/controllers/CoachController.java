@@ -31,8 +31,7 @@ public class CoachController {
     }
 
     @GetMapping("")
-    public List<CoachDto> getAllCoaches(){
-
+    public List<CoachDto> getAllCoaches() {
         return coachService.getCoachList();
     }
 

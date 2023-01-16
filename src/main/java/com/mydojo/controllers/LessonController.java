@@ -20,7 +20,6 @@ public class LessonController {
 
     @GetMapping("")
     public List<LessonDto> getAllLessons(){
-
         return lessonService.getLessonList();
     }
 
@@ -29,10 +28,10 @@ public class LessonController {
         return lessonService.getAllLessonByCoach(coachId);
     }
 
-    @GetMapping("/{studentId}/classes")
-    public List<LessonDto> getAllLessonsByStudent(@PathVariable Long studentId) {
-        return lessonService.getAllLessonByStudent(studentId);
-    }
+//    @GetMapping("/{studentId}/classes")
+//    public List<LessonDto> getAllLessonsByStudent(@PathVariable Long studentId) {
+//        return lessonService.getAllLessonByStudent(studentId);
+//    }
 
     @GetMapping("/{lessonId}")
     public Optional<LessonDto> getLessonById(@PathVariable Long lessonId) {
@@ -46,6 +45,7 @@ public class LessonController {
 
     @PostMapping("/{lessonId}/coaches")
     public void addCoachToSet(@PathVariable Long lessonId, @RequestBody CoachDto coachDto){
+        System.out.println("addCoachToSet " + lessonId + " : " + coachDto);
         lessonService.addCoachToSet(lessonId, coachDto.getCoachId());
     }
 

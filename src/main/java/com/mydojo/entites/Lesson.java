@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.util.Objects;
 import java.util.Set;
 
 import lombok.*;
@@ -42,6 +43,7 @@ public class Lesson {
 
     @ManyToMany(mappedBy = "lessonSet")
     private Set<Coach> coachSet;
+
     public Lesson(LessonDto lessonDto){
         if (lessonDto.getLessonId() != null) {
             this.lessonId = lessonDto.getLessonId();
@@ -66,5 +68,16 @@ public class Lesson {
         if (lessonDto.getDescription() != null) {
             this.description = lessonDto.getDescription().toString();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(lessonId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return  (obj instanceof Lesson ?
+                Objects.equals(((Lesson) obj).lessonId, lessonId) : false);
     }
 }

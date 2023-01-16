@@ -4,6 +4,7 @@ import com.mydojo.dtos.CoachDto;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -95,6 +96,16 @@ public class Coach {
         if (coachDto.getRank() != null) {
             this.rank = coachDto.getRank();
         }
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(coachId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return  (obj instanceof Coach ?
+                Objects.equals(((Coach) obj).coachId, coachId) : false);
     }
 }
