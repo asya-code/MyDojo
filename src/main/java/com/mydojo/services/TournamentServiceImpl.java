@@ -29,19 +29,11 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     @Transactional
-    public List<String> addNewTournament(TournamentDto tournamentDto, Long coachId) {
+    public List<String> addNewTournament(TournamentDto tournamentDto) {
         List<String> response = new ArrayList<>();
-        Optional<Coach> coachOptional = coachRepository.findById(coachId);
-        Tournament tournament = new Tournament(tournamentDto);
-        if (coachOptional.isPresent()) {
-            if (tournament.getCoachSet() == null){
-                HashSet newCoachSetTournament = new HashSet<>();
-                newCoachSetTournament.add(coachOptional.get());
-                tournament.setCoachSet(newCoachSetTournament);
-            }
-            tournament.getCoachSet().add(coachOptional.get());
-        }
+       Tournament tournament = new Tournament(tournamentDto);
         tournamentRepository.saveAndFlush(tournament);
+        System.out.println(tournament);
         response.add("Tournament Added Successfully");
         return response;
     }
@@ -55,7 +47,7 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     @Transactional
-    public void updateTournamentByCoach(TournamentDto tournamentDto) {
+    public void updateTournament(TournamentDto tournamentDto) {
         Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentDto.getTournamentId());
         tournamentOptional.ifPresent((tournament -> {
             tournament.setTournamentName(tournamentDto.getTournamentName());
@@ -64,10 +56,31 @@ public class TournamentServiceImpl implements TournamentService {
             tournament.setTime(tournamentDto.getTime());
             tournament.setAge(tournament.getAge());
             tournament.setDescription(tournament.getDescription());
-            tournament.setCoachSet(tournamentDto.getCoachSet());
-            tournament.setStudentSet(tournamentDto.getStudentSet());
+//            tournament.setCoachSet(tournamentDto.getCoachSet());
+//            tournament.setStudentSet(tournamentDto.getStudentSet());
             tournamentRepository.saveAndFlush(tournament);
         }));
+    }
+
+    @Transactional
+    @Override
+    public void addCoachToTournamentSet(Long tournamentId, Long coachId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        if (!tournamentOptional.isPresent()) {
+            System.out.println("addCoachToSet tournament not found: " + tournamentId);
+            return;
+        }
+
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+        if (!coachOptional.isPresent()) {
+            System.out.println("addCoachToSet coach not found: " + coachId);
+            return;
+        }
+
+        Tournament tournament = tournamentOptional.get();
+        tournament.getCoachSet().add(coachOptional.get());
+        coachOptional.get().getTournamentSet().add(tournament);
+        tournamentRepository.saveAndFlush(tournament);
     }
 
     @Override
@@ -92,19 +105,37 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     public Optional<TournamentDto> getTournamentById(Long tournamentId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        if (tournamentOptional.isPresent()) {
+            return Optional.of(new TournamentDto((tournamentOptional.get())));
+        }
         return Optional.empty();
     }
 
     @Override
     public List<TournamentDto> getTournamentList() {
-//        return tournamentRepository.findAll().stream().map(entity -> {
-//            return new TournamentDto(entity);
-//        }).toList();
-        List<Tournament> tempList = tournamentRepository.findAll();
-        List<TournamentDto> dtoList = new ArrayList<>();
-        for (Tournament tournament:tempList
-             ) {dtoList.add(new TournamentDto(tournament));
+        return tournamentRepository.findAll().stream().map(entity -> {
+            return new TournamentDto(entity);
+        }).toList();
+    }
+
+    @Override
+    public void addStudentToTournamentSet(Long tournamentId, Long studentId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        if (!tournamentOptional.isPresent()) {
+            System.out.println("addStudentToTournamentSet tournament not found: " + tournamentId);
+            return;
         }
-        return dtoList;
+
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (!studentOptional.isPresent()) {
+            System.out.println("addStudentToTournamentSet student not found: " + studentId);
+            return;
+        }
+
+        Tournament tournament = tournamentOptional.get();
+        tournament.getStudentSet().add(studentOptional.get());
+        studentOptional.get().getTournamentSet().add(tournament);
+        tournamentRepository.saveAndFlush(tournament);
     }
 }

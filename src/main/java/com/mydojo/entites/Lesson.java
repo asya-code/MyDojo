@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import lombok.*;
-import org.springframework.stereotype.Service;
 
 @Entity
 @Table(name="Lessons")

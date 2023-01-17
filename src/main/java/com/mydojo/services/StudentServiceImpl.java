@@ -35,7 +35,8 @@ public class StudentServiceImpl implements StudentService {
         List<String> response = new ArrayList<>();
         Optional<Student> studentOptional = studentRepository.findByEmail(studentDto.getEmail());
         if (studentOptional.isPresent()) {
-            if (passwordEncoder.matches(studentDto.getPassword(), studentOptional.get().getPassword())) {
+            if (passwordEncoder.matches(studentDto.getPassword(),
+                    studentOptional.get().getPassword())) {
                 response.add("Student login successful");
                 response.add(String.valueOf((studentOptional.get().getStudentId())));
             } else {

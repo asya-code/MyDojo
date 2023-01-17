@@ -58,22 +58,22 @@ public class TournamentDto implements Serializable {
         }
     }
 
-    public Set<Coach> getCoachSet(){
-        Set <Coach> coachSet = new HashSet<>();
-        for (CoachDto each : coachDtoSet){
-            Coach temporaryCoach = new Coach(each);
-            coachSet.add(temporaryCoach);
-        }
-        return coachSet;
-    }
-
-    public Set<Student> getStudentSet() {
-        Set <Student> studentSet = new HashSet<>();
-        for (StudentDto each : studentDtoSet) {
-            Student temporaryStudent = new Student(each);
-            studentSet.add(temporaryStudent);
-        }
-        return studentSet;
-    }
+//    public Set<Coach> getCoachSet(){
+//        Set <Coach> coachSet = new HashSet<>();
+//        for (CoachDto each : coachDtoSet){
+//            Coach temporaryCoach = new Coach(each);
+//            coachSet.add(temporaryCoach);
+//        }
+//        return coachSet;
+//    }
+//
+//    public Set<Student> getStudentSet() {
+//        Set <Student> studentSet = new HashSet<>();
+//        for (StudentDto each : studentDtoSet) {
+//            Student temporaryStudent = new Student(each);
+//            studentSet.add(temporaryStudent);
+//        }
+//        return studentSet;
+//    }
 }
 

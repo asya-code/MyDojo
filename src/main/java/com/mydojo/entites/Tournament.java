@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -77,6 +78,16 @@ public class Tournament {
             this.time = tournamentDto.getTime();
         }
 
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(tournamentId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return  (obj instanceof Tournament ?
+                Objects.equals(((Tournament) obj).tournamentId, tournamentId) : false);
     }
 
 }

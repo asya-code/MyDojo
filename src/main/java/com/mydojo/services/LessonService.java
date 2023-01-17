@@ -18,7 +18,7 @@ public interface LessonService {
     void updateLesson(LessonDto lessonDto);
 
     @Transactional
-    void addCoachToSet(Long lessonId, Long coachId);
+    void addCoachToLessonSet(Long lessonId, Long coachId);
 
     List<LessonDto> getAllLessonByCoach(Long coachId);
 
@@ -27,4 +27,6 @@ public interface LessonService {
     Optional<LessonDto> getLessonById(Long lessonId);
 
     List<LessonDto> getLessonList();
+
+    void addStudentToLessonSet(Long lessonId, Long studentId);
 }

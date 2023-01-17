@@ -30,58 +30,11 @@ public class LessonServiceImpl implements LessonService {
     public List<String> addNewLesson(LessonDto lessonDto) {
         List<String> response = new ArrayList<>();
         Lesson lesson = new Lesson(lessonDto);
-
-        //System.out.println(lesson);
-
-//        if(lesson.getCoachSet() == null) {
-//            HashSet coachSet = new HashSet<>();
-//            lesson.setCoachSet(coachSet);
-//        }
-//        if(lesson.getStudentSet() == null) {
-//            HashSet studentSet = new HashSet<>();
-//            lesson.setStudentSet(studentSet);
-//        }
-
         lessonRepository.saveAndFlush(lesson);
         System.out.println(lesson);
-
-
-//        } else{
-//            Set<Coach> coachSet = lesson.getCoachSet();
-//        }
-//        if (coachOptional.isPresent()) {
-//            coachSet.add(coachOptional.get());
-//            lesson.setCoachSet(coachSet);
-//        }
-//        if (coachOptional.isPresent()){
-//            if(lesson.getCoachSet() == null){
-//                HashSet set = new HashSet<>();
-//                set.add(coachOptional.get());
-//                lesson.setCoachSet(set);
-////                System.out.println(lesson);
-//            } else {
-//                lesson.getCoachSet().add(coachOptional.get());
-//                System.out.println(lesson);
-//            }
-////
-//        }
-//        lessonRepository.saveAndFlush(lesson);
-//        System.out.println(lesson);
-
         response.add("Class Added Successfully");
         return response;
     }
-//    public void addNewLesson(LessonDto lessonDto, Long coachId) {
-//        Optional<Coach> coachOptional = coachRepository.findById(coachId);
-//        Lesson lesson = new Lesson(lessonDto);
-//        if (coachOptional.isPresent()){
-//            if(lesson.getCoachSet() == null){
-//                lesson.setCoachSet(new HashSet<>());
-//            }
-//            lesson.getCoachSet().add(coachOptional.get());
-//        }
-//        lessonRepository.saveAndFlush(lesson);
-//    }
 
     @Override
     @Transactional
@@ -108,7 +61,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Transactional
     @Override
-    public void addCoachToSet(Long lessonId, Long coachId) {
+    public void addCoachToLessonSet(Long lessonId, Long coachId) {
         Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
         if (!lessonOptional.isPresent()) {
             System.out.println("addCoachToSet lesson not found: " + lessonId);
@@ -166,5 +119,25 @@ public class LessonServiceImpl implements LessonService {
             }
             return new LessonDto(entity);
         }).toList();
+    }
+
+    @Override
+    public void addStudentToLessonSet(Long lessonId, Long studentId) {
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        if (!lessonOptional.isPresent()) {
+            System.out.println("addStudentToLessonSet lesson not found: " + lessonId);
+            return;
+        }
+
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (!studentOptional.isPresent()) {
+            System.out.println("addStudentToLessonSet student not found: " + studentId);
+            return;
+        }
+
+        Lesson lesson = lessonOptional.get();
+        lesson.getStudentSet().add(studentOptional.get());
+        studentOptional.get().getLessonSet().add(lesson);
+        lessonRepository.saveAndFlush(lesson);
     }
 }

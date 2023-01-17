@@ -2,6 +2,7 @@ package com.mydojo.controllers;
 
 import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.LessonDto;
+import com.mydojo.dtos.StudentDto;
 import com.mydojo.repositories.LessonRepository;
 import com.mydojo.services.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +20,25 @@ public class LessonController {
     private LessonRepository lessonRepository;
 
     @GetMapping("")
-    public List<LessonDto> getAllLessons(){
+    public List<LessonDto> getLessonsList(){
         return lessonService.getLessonList();
     }
 
-    @GetMapping("/{coachId}/classes")
-    public List<LessonDto> getAllLessonsByCoach(@PathVariable Long coachId) {
+    @GetMapping("/coach/{coachId}")
+    public List<LessonDto> getAllLessonByCoach(@PathVariable Long coachId) {
         return lessonService.getAllLessonByCoach(coachId);
     }
 
-//    @GetMapping("/{studentId}/classes")
-//    public List<LessonDto> getAllLessonsByStudent(@PathVariable Long studentId) {
-//        return lessonService.getAllLessonByStudent(studentId);
-//    }
+    @GetMapping("/student/{studentId}")
+    public List<LessonDto> getAllLessonByStudent(@PathVariable Long studentId) {
+        return lessonService.getAllLessonByStudent(studentId);
+    }
+
+    @PostMapping("/new-class")
+    public List<String> addNewLesson(@RequestBody LessonDto lessonDto) {
+        System.out.println(lessonDto.toString());
+        return lessonService.addNewLesson(lessonDto);
+    }
 
     @GetMapping("/{lessonId}")
     public Optional<LessonDto> getLessonById(@PathVariable Long lessonId) {
@@ -39,32 +46,29 @@ public class LessonController {
     }
 
     @PutMapping("/{lessonId}")
-    public void updateLesson(@PathVariable Long lessonId, @RequestBody LessonDto lessonDto){
+    public void updateLesson(@PathVariable Long lessonId,
+                             @RequestBody LessonDto lessonDto){
         lessonService.updateLesson(lessonDto);
     }
 
-    @PostMapping("/{lessonId}/coaches")
-    public void addCoachToSet(@PathVariable Long lessonId, @RequestBody CoachDto coachDto){
-        System.out.println("addCoachToSet " + lessonId + " : " + coachDto);
-        lessonService.addCoachToSet(lessonId, coachDto.getCoachId());
-    }
-
-
-
-    // this should be available only for logged in coaches
-    @PostMapping("/new-class")
-    public List<String> addNewLesson(@RequestBody LessonDto lessonDto) {
-        System.out.println(lessonDto.toString());
-        return lessonService.addNewLesson(lessonDto);
-    }
-
-    // this should be available only for logged in coaches
     @DeleteMapping("/{lessonId}")
     public void deleteLessonById(@PathVariable Long lessonId){
         lessonService.deleteLessonByIdCoach(lessonId);
     }
 
+    @PostMapping("/{lessonId}/add-coach")
+    public void addCoachToLessonSet(@PathVariable Long lessonId,
+                              @RequestBody CoachDto coachDto){
+        System.out.println("addCoachToLessonSet " + lessonId + " : " + coachDto);
+        lessonService.addCoachToLessonSet(lessonId, coachDto.getCoachId());
+    }
+
+    @PostMapping("/{lessonId}/add-student")
+    public void addStudentToLessonSet(@PathVariable Long lessonId,
+                              @RequestBody StudentDto studentDto){
+        System.out.println("/n" + " addStudentToLessonSet " + lessonId + " : " + studentDto);
+        lessonService.addStudentToLessonSet(lessonId, studentDto.getStudentId());
+    }
 //    @PostMapping("/{studentId}/classes")
 //    public void addLessonForStudent()
-
 }

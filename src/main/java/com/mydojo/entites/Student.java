@@ -1,11 +1,12 @@
 package com.mydojo.entites;
 
+import com.mydojo.dtos.StudentDto;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
-import com.mydojo.dtos.StudentDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,7 +55,7 @@ public class Student {
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "students_tournaments", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
 
-    private Set<Lesson> tournamentSet = new HashSet<>();
+    private Set<Tournament> tournamentSet = new HashSet<>();
 
     public Student(StudentDto studentDto) {
         if (studentDto.getStudentId() != null) {
@@ -96,5 +97,16 @@ public class Student {
         if (studentDto.getRank() != null) {
             this.rank = studentDto.getRank();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(studentId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (obj instanceof Student ?
+                Objects.equals(((Student) obj).studentId, studentId) : false);
     }
 }

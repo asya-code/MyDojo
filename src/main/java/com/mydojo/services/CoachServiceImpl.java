@@ -35,7 +35,8 @@ public class CoachServiceImpl implements CoachService {
         List<String> response = new ArrayList<>();
         Optional<Coach> coachOptional = coachRepository.findByEmail(coachDto.getEmail());
             if (coachOptional.isPresent()) {
-                if (passwordEncoder.matches(coachDto.getPassword(), coachOptional.get().getPassword())) {
+                if (passwordEncoder.matches(coachDto.getPassword(),
+                        coachOptional.get().getPassword())) {
                     response.add("Coach login successful");
                     response.add(String.valueOf(coachOptional.get().getCoachId()));
                 } else {
