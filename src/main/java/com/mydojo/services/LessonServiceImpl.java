@@ -61,6 +61,7 @@ public class LessonServiceImpl implements LessonService {
         });
     }
 
+
     @Transactional
     @Override
     public void addCoachToLessonSet(Long lessonId, Long coachId) {
@@ -110,6 +111,7 @@ public class LessonServiceImpl implements LessonService {
         }
         return Optional.empty();
     }
+
     @Override
     public List<StudentDto> getStudentListByLessonId(Long lessonId){
         Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);

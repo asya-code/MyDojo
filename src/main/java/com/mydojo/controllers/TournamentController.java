@@ -45,6 +45,25 @@ public class TournamentController {
         return tournamentService.getTournamentById(tournamentId);
     }
 
+    @GetMapping("/{tournamentId}/students")
+    public List<StudentDto> getStudentList(@PathVariable Long tournamentId){
+        return tournamentService.getStudentListByTournamentId(tournamentId);
+    }
+
+    @DeleteMapping("/{tournamentId}/students/{studentId}")
+    public void deleteStudentFromTournament(@PathVariable Long tournamentId, @PathVariable Long studentId) {
+        tournamentService.deleteStudentFromTournament(tournamentId, studentId);
+    }
+
+    @GetMapping("/{lessonId}/coaches")
+    public List<CoachDto> getCoachList(@PathVariable Long tournamentId){
+        return tournamentService.getCoachListByTournamentId(tournamentId);
+    }
+
+    @DeleteMapping("/{lessonId}/coaches/{coachId}")
+    public void deleteCoachFromLesson(@PathVariable Long tournamentId, @PathVariable Long coachId) {
+        tournamentService.deleteCoachFromTournament(tournamentId, coachId);
+    }
     @PutMapping("/{tournamentId}")
     public void updateTournament(@PathVariable Long tournamentId,
                                  @RequestBody TournamentDto tournamentDto){

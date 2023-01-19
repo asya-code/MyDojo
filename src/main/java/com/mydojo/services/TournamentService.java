@@ -1,5 +1,7 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
+import com.mydojo.dtos.StudentDto;
 import com.mydojo.dtos.TournamentDto;
 import com.mydojo.entites.Tournament;
 import jakarta.transaction.Transactional;
@@ -26,8 +28,15 @@ public interface TournamentService {
 
     Optional<TournamentDto> getTournamentById(Long tournamentId);
 
+    List<StudentDto> getStudentListByTournamentId(Long tournamentId);
+
+    void deleteStudentFromTournament(Long tournamentId, Long studentId);
+
+    List<CoachDto> getCoachListByTournamentId(Long tournamentId);
+
+    void deleteCoachFromTournament(Long tournamentId, Long coachId);
+
     List<TournamentDto> getTournamentList();
 
     void addStudentToTournamentSet(Long tournamentId, Long studentId);
-
 }

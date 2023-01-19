@@ -1,5 +1,7 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
+import com.mydojo.dtos.StudentDto;
 import com.mydojo.dtos.TournamentDto;
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Student;
@@ -25,7 +27,6 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
     private StudentRepository studentRepository;
-
 
     @Override
     @Transactional
@@ -110,6 +111,54 @@ public class TournamentServiceImpl implements TournamentService {
             return Optional.of(new TournamentDto((tournamentOptional.get())));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<StudentDto> getStudentListByTournamentId(Long tournamentId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        if(tournamentOptional.isPresent()) {
+            return tournamentOptional.get().getStudentSet().stream().map(entity -> {
+                return new StudentDto(entity);
+            }).toList();
+        } else{
+            return List.of();
+        }
+    }
+
+    @Override
+    public void deleteStudentFromTournament(Long tournamentId, Long studentId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if(tournamentOptional.isPresent() && studentOptional.isPresent()){
+            tournamentOptional.get().getStudentSet().remove(studentOptional.get());
+            studentOptional.get().getTournamentSet().remove(tournamentOptional.get());
+            tournamentRepository.saveAndFlush(tournamentOptional.get());
+            studentRepository.saveAndFlush(studentOptional.get());
+        }
+    }
+
+    @Override
+    public List<CoachDto> getCoachListByTournamentId(Long tournamentId){
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        if (tournamentOptional.isPresent()) {
+            return tournamentOptional.get().getCoachSet().stream().map(entity -> {
+                return new CoachDto(entity);
+            }).toList();
+        } else{
+            return List.of();
+        }
+    }
+
+    @Override
+    public void deleteCoachFromTournament(Long tournamentId, Long coachId) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+        if (tournamentOptional.isPresent() && coachOptional.isPresent()) {
+            tournamentOptional.get().getCoachSet().remove(coachOptional.get());
+            coachOptional.get().getTournamentSet().remove(tournamentOptional.get());
+            tournamentRepository.saveAndFlush(tournamentOptional.get());
+            coachRepository.saveAndFlush(coachOptional.get());
+        }
     }
 
     @Override
