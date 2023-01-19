@@ -1,6 +1,8 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.LessonDto;
+import com.mydojo.dtos.StudentDto;
 import com.mydojo.entites.Coach;
 import com.mydojo.entites.Lesson;
 import com.mydojo.entites.Student;
@@ -108,7 +110,53 @@ public class LessonServiceImpl implements LessonService {
         }
         return Optional.empty();
     }
+    @Override
+    public List<StudentDto> getStudentListByLessonId(Long lessonId){
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        if (lessonOptional.isPresent()) {
+            return lessonOptional.get().getStudentSet().stream().map(entity -> {
+                return new StudentDto(entity);
+            }).toList();
+        } else {
+            return List.of();
+        }
+    }
 
+    @Override
+    public void deleteStudentFromLesson(Long lessonId, Long studentId) {
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (lessonOptional.isPresent() && studentOptional.isPresent()) {
+            lessonOptional.get().getStudentSet().remove(studentOptional.get());
+            studentOptional.get().getLessonSet().remove(lessonOptional.get());
+            lessonRepository.saveAndFlush(lessonOptional.get());
+            studentRepository.saveAndFlush(studentOptional.get());
+        }
+    }
+
+    @Override
+    public List<CoachDto> getCoachListByLessonId(Long lessonId){
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        if (lessonOptional.isPresent()) {
+            return lessonOptional.get().getCoachSet().stream().map(entity -> {
+                return new CoachDto(entity);
+            }).toList();
+        } else {
+            return List.of();
+        }
+    }
+
+    @Override
+    public void deleteCoachFromLesson(Long lessonId, Long coachId) {
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
+        if (lessonOptional.isPresent() && coachOptional.isPresent()) {
+            lessonOptional.get().getCoachSet().remove(coachOptional.get());
+            coachOptional.get().getLessonSet().remove(lessonOptional.get());
+            lessonRepository.saveAndFlush(lessonOptional.get());
+            coachRepository.saveAndFlush(coachOptional.get());
+        }
+    }
     @Override
     public List<LessonDto> getLessonList() {
         return lessonRepository.findAll().stream().map(entity -> {

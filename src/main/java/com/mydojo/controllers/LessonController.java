@@ -45,6 +45,26 @@ public class LessonController {
         return lessonService.getLessonById(lessonId);
     }
 
+    @GetMapping("/{lessonId}/students")
+    public List<StudentDto> getStudentList(@PathVariable Long lessonId){
+        return lessonService.getStudentListByLessonId(lessonId);
+    }
+
+    @DeleteMapping("/{lessonId}/students/{studentId}")
+    public void deleteStudentFromLesson(@PathVariable Long lessonId, @PathVariable Long studentId) {
+        lessonService.deleteStudentFromLesson(lessonId, studentId);
+    }
+
+    @GetMapping("/{lessonId}/coaches")
+    public List<CoachDto> getCoachList(@PathVariable Long lessonId){
+        return lessonService.getCoachListByLessonId(lessonId);
+    }
+
+    @DeleteMapping("/{lessonId}/coaches/{coachId}")
+    public void deleteCoachFromLesson(@PathVariable Long lessonId, @PathVariable Long coachId) {
+        lessonService.deleteCoachFromLesson(lessonId, coachId);
+    }
+
     @PutMapping("/{lessonId}")
     public void updateLesson(@PathVariable Long lessonId,
                              @RequestBody LessonDto lessonDto){

@@ -1,11 +1,13 @@
 package com.mydojo.controllers;
 
 import com.mydojo.dtos.CoachDto;
+import com.mydojo.repositories.CoachRepository;
 import com.mydojo.services.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ public class CoachController {
     private CoachService coachService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private CoachRepository coachRepository;
 
     @PostMapping("/registerCoach")
     public List<String> addCoach(@RequestBody CoachDto coachDto) {

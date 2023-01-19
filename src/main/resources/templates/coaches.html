@@ -1,7 +1,6 @@
 <!doctype html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,16 +24,13 @@
 
 
 
-    <title>{% block title %}{% endblock %}</title>
-    {% endblock %}
+    <title></title>
 </head>
 
 <body>
-{% for msg in get_flashed_messages() %}
 <p class="flash-msg" role="alert">
     {{ msg }}
 </p>
-{% endfor %}
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="background-color: rgb(226, 253, 233);">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,11 +62,11 @@
                 <a class="nav-link" href="/coaches"> Our Coaches </a>
             </li>
 
-<!--            <form class="d-flex" action="/search">-->
-<!--                <input class="form-control me-2" id="searchField" name="cuisine" type="search" placeholder="Search" aria-label="search">-->
-<!--                <button class="btn btn-outline-success" id="searchBttn" type="submit">Search</button>-->
-<!--            </form>-->
-<!--            -->
+            <!--            <form class="d-flex" action="/search">-->
+            <!--                <input class="form-control me-2" id="searchField" name="cuisine" type="search" placeholder="Search" aria-label="search">-->
+            <!--                <button class="btn btn-outline-success" id="searchBttn" type="submit">Search</button>-->
+            <!--            </form>-->
+            <!--            -->
 
             {% if session['coach'] %}
             <li class="nav-item dropdown">
@@ -79,12 +75,25 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/my_profile"> My Profile</a></li>
-                    <li><a class="dropdown-item" href="/_recipes"> My own recipes </a></li>
-                    <li><a class="dropdown-item" href="/user_favorite"> My favorites </a></li>
-                    <li><a class="dropdown-item" href="/new_recipe"> Add new recipe </a></li>
-                    <li><a class="dropdown-item" href="/recommendations"> Recommendations </a></li>
+                    <li><a class="dropdown-item" href="/lessons/coach/{coachId}"> My classes </a></li>
+                    <li><a class="dropdown-item" href="/tournaments/coach/{coachId}"> My tournaments </a></li>
+                    <li><a class="dropdown-item" href="/classes/new-class"> Add new class </a></li>
+                    <li><a class="dropdown-item" href="/tournaments/new-tournament"> Add new tournament </a></li>
 
-                    <li><a class="dropdown-item" href="/meal_plan"> Meal Plan</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                </ul>
+            </li>
+            {% if session['student'] %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                    Let's start!
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/my_profile"> My Profile</a></li>
+                    <li><a class="dropdown-item" href="/lessons/coach/{coachId}"> My classes </a></li>
+                    <li><a class="dropdown-item" href="/tournaments/coach/{coachId}"> My tournaments </a></li>
+
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                 </ul>
@@ -106,7 +115,10 @@
 
 <br>
 <div class="container">
-    {% block content %}  {% endblock %}
+    <ul>
+        <li th:each="coach: ${coaches}"><a th:text="${coach.firstName}" th:href="@{/coaches/{id}(id=${coach.coachId})}">Coach Name</a></li>
+    </ul>
+
 </div>
 
 <!-- Bootstrap JavaScript Bundle with Popper (a Bootstrap dependency for popovers) -->

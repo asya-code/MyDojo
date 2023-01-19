@@ -1,6 +1,8 @@
 package com.mydojo.services;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.LessonDto;
+import com.mydojo.dtos.StudentDto;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
@@ -26,7 +28,14 @@ public interface LessonService {
 
     Optional<LessonDto> getLessonById(Long lessonId);
 
+    void deleteCoachFromLesson(Long lessonId, Long coachId);
+
     List<LessonDto> getLessonList();
+
+    List<CoachDto> getCoachListByLessonId(Long lessonId);
+
+    void deleteStudentFromLesson(Long lessonId, Long studentId);
+    List<StudentDto> getStudentListByLessonId(Long lessonID);
 
     void addStudentToLessonSet(Long lessonId, Long studentId);
 }

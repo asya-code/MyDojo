@@ -26,7 +26,7 @@ public class CoachServiceImpl implements CoachService {
         List<String> response = new ArrayList<>();
         Coach coach = new Coach(coachDto);
         coachRepository.saveAndFlush(coach);
-        response.add("Coach Added Successfully");
+        response.add("http://localhost:8080/login.html");
         return response;
     }
 
@@ -37,7 +37,7 @@ public class CoachServiceImpl implements CoachService {
             if (coachOptional.isPresent()) {
                 if (passwordEncoder.matches(coachDto.getPassword(),
                         coachOptional.get().getPassword())) {
-                    response.add("Coach login successful");
+                    response.add("http://localhost:8080/index.html");
                     response.add(String.valueOf(coachOptional.get().getCoachId()));
                 } else {
                     response.add("Email or password is incorrect");
