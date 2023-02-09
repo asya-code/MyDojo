@@ -1,8 +1,0 @@
-com/mydojo/entites/Student.class
-com/mydojo/entites/Lesson.class
-com/mydojo/MyDojoApplication.class
-com/mydojo/dtos/StudentDto.class
-com/mydojo/dtos/LessonDto.class
-com/mydojo/configuration/Config.class
-com/mydojo/dtos/CoachDto.class
-com/mydojo/entites/Coach.class

@@ -3,10 +3,17 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import withNavigation from './WithNavigation'
 import withParam from './WithParams'
 import HeaderComponent from './HeaderComponent'
+import LoginComponent from './LoginComponent'
+import ErrorComponent from './ErrorComponent'
+import LogoutComponent from './LogoutComponent'
+import AuthenticatedRoute from './AuthenticatedRoute'
+import ListCoachesComponent from './ListCoachesComponent'
 
 class MyDojoApp extends Component{
     render(){
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
+        const LoginComponentWithNavigation = withNavigation(LoginComponent);
+        const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
 
         return(
             <div className="MyDojoApp">
@@ -30,6 +37,22 @@ class MyDojoApp extends Component{
 
                 <Router>
                     <HeaderComponentWithNavigation/>
+                    <Routes>
+                        <Route path="/" element={<LoginComponentWithNavigation/>}/>
+
+                        <Route path="/login" element={<LoginComponentWithNavigation/>}/>
+
+                        <Route path="*" element={<ErrorComponent/>}/>
+
+                        <Route path="/logout" element={
+                            <AuthenticatedRoute>
+                                <LogoutComponent/>
+                            </AuthenticatedRoute>}/>
+
+                        <Route path="/coaches" element={<ListCoachesComponentWithNavigation/>}/>
+
+
+                    </Routes>
 
                 </Router>
             </div>
