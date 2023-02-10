@@ -48,6 +48,9 @@ public class Coach {
     @Column
     private String rank;
 
+    @Column
+    private String description;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "coaches_lessons", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
     private Set<Lesson> lessonSet = new HashSet<>();
@@ -95,6 +98,10 @@ public class Coach {
 
         if (coachDto.getRank() != null) {
             this.rank = coachDto.getRank();
+        }
+
+        if (coachDto.getDescription() != null) {
+            this.description = coachDto.getDescription();
         }
     }
 

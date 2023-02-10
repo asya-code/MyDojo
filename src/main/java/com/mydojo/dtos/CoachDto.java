@@ -24,6 +24,8 @@ public class CoachDto implements Serializable {
     private Date teachingSince;
     private String rank;
 
+    private String description;
+
     private Set<LessonDto> lessonDtoSet;
     private Set<TournamentDto> tournamentDtoSet;
 
@@ -66,6 +68,10 @@ public class CoachDto implements Serializable {
 
         if (coach.getRank() != null) {
             this.rank = coach.getRank();
+        }
+
+        if (coach.getDescription() != null) {
+            this.description = coach.getDescription();
         }
     }
 }
