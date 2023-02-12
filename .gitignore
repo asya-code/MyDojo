@@ -1,1 +1,2 @@
 src/main/java/resources/application.properties
+target/classes/application.properties
