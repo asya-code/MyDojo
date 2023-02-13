@@ -17,9 +17,9 @@ public class StudentDto implements Serializable {
     private String firstName;
     private String lastName;
     private String middleName;
+    private String password;
     private Date dob;
     private String email;
-    private String password;
     private String image;
     private Date started;
     private String rank;
@@ -50,10 +50,6 @@ public class StudentDto implements Serializable {
 
         if (student.getEmail() != null) {
             this.email = student.getEmail();
-        }
-
-        if (student.getPassword() != null) {
-            this.password = student.getPassword();
         }
 
         if (student.getImage() != null) {

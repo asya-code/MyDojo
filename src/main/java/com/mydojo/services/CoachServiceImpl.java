@@ -2,10 +2,12 @@ package com.mydojo.services;
 
 import com.mydojo.dtos.CoachDto;
 import com.mydojo.entites.Coach;
+import com.mydojo.entites.User;
 import com.mydojo.repositories.CoachRepository;
+
 import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,35 +19,32 @@ public class CoachServiceImpl implements CoachService {
     @Autowired
     private CoachRepository coachRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     @Transactional
     public List<String> addCoach(CoachDto coachDto) {
         List<String> response = new ArrayList<>();
         Coach coach = new Coach(coachDto);
         coachRepository.saveAndFlush(coach);
-        response.add("http://localhost:8080/login.html");
+        response.add("coach added successfully");
         return response;
     }
 
     @Override
-    public List<String> coachLogin(CoachDto coachDto) {
-        List<String> response = new ArrayList<>();
-        Optional<Coach> coachOptional = coachRepository.findByEmail(coachDto.getEmail());
-            if (coachOptional.isPresent()) {
-                if (passwordEncoder.matches(coachDto.getPassword(),
-                        coachOptional.get().getPassword())) {
-                    response.add("http://localhost:8080/index.html");
-                    response.add(String.valueOf(coachOptional.get().getCoachId()));
-                } else {
-                    response.add("Email or password is incorrect");
-                }
-            } else {
-                response.add("Email or password is incorrect");
-            }
-            return response;
+    @Transactional
+    public void updateCoach(CoachDto coachDto){
+        Optional<Coach> coachOptional = coachRepository.findById(coachDto.getCoachId());
+        coachOptional.ifPresent(coach -> {
+            coach.setFirstName(coachDto.getFirstName());
+            coach.setLastName(coachDto.getLastName());
+            coach.setMiddleName(coachDto.getMiddleName());
+            coach.setDob(coachDto.getDob());
+            coach.setEmail(coachDto.getEmail());
+            coach.setImage(coachDto.getImage());
+            coach.setTeachingSince(coachDto.getTeachingSince());
+            coach.setRank(coachDto.getRank());
+            coach.setDescription(coachDto.getDescription());
+            coachRepository.saveAndFlush(coach);
+        });
     }
 
     @Override
@@ -62,5 +61,11 @@ public class CoachServiceImpl implements CoachService {
             return Optional.of(new CoachDto(coachOptional.get()));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public boolean isCoach(String email) {
+        Optional<Coach> optional = coachRepository.findByEmail(email);
+        return optional.isPresent();
     }
 }

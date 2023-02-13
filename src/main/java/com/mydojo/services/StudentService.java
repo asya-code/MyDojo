@@ -10,8 +10,6 @@ public interface StudentService {
     @Transactional
     List<String> addStudent(StudentDto studentDto);
 
-    List<String> studentLogin(StudentDto studentDto);
-
     List<StudentDto> getStudentList();
 
     Optional<StudentDto> getStudentById(Long studentId);

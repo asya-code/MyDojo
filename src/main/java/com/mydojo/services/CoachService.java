@@ -10,9 +10,12 @@ public interface CoachService {
     @Transactional
     List<String> addCoach(CoachDto coachDto);
 
-    List<String> coachLogin(CoachDto coachDto);
+    @Transactional
+    void updateCoach(CoachDto coachDto);
 
     List<CoachDto> getCoachList();
 
     Optional<CoachDto> getCoachById(Long coachId);
+
+    boolean isCoach(String email);
 }

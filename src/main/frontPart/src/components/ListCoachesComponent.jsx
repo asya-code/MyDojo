@@ -75,6 +75,7 @@ class ListCoachesComponent extends Component{
                                         <div>{coach.firstName} {coach.lastName} {coach.rank} belt</div>
                                             <div> Teaching since {moment(coach.teachingSince).format('YYYY-MM-DD')}</div>
                                             <div>{coach.description}</div>
+                                            <img src={coach.image}/>
                                         </p>
                                         </>
                                     </li>

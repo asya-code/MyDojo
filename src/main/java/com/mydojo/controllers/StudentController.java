@@ -1,9 +1,11 @@
 package com.mydojo.controllers;
 
+import com.mydojo.dtos.CoachDto;
 import com.mydojo.dtos.StudentDto;
+import com.mydojo.dtos.UserDto;
 import com.mydojo.services.StudentService;
+import com.mydojo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,40 +18,31 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
     @PostMapping("/registerStudent")
-    public List<String> addStudent(@RequestBody StudentDto studentDto) {
+    public List<String> registerStudent(@RequestBody StudentDto studentDto) {
         System.out.println(studentDto.toString());
-        String passHash = passwordEncoder.encode((studentDto.getPassword()));
-        studentDto.setPassword(passHash);
+
+        Optional<UserDto> user = userService.findByEmail(studentDto.getEmail());
+        if (!user.isPresent()) {
+            userService.addByEmail(studentDto.getEmail(), studentDto.getPassword());
+            user = userService.findByEmail(studentDto.getEmail());
+            if (!user.isPresent()) {
+                throw new RuntimeException("New user not found");
+            }
+        }
+
         return studentService.addStudent(studentDto);
     }
 
-    @PostMapping("/login")
-    public List<String> studentLogin(@RequestBody StudentDto studentDto) {
-        return studentService.studentLogin(studentDto);
-    }
-
-    @GetMapping("")
+    @GetMapping("/all")
     public List<StudentDto> getAllStudents(){
         return studentService.getStudentList();
     }
 
-    @GetMapping("/{studentId}")
+    @GetMapping("/id/{studentId}")
     public Optional<StudentDto> getStudentById(@PathVariable Long studentId){
         return studentService.getStudentById(studentId);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

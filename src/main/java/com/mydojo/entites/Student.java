@@ -37,9 +37,6 @@ public class Student {
     private String email;
 
     @Column
-    private String password;
-
-    @Column
     private String image;
 
     @Column
@@ -80,10 +77,6 @@ public class Student {
 
         if (studentDto.getEmail() != null) {
             this.email = studentDto.getEmail();
-        }
-
-        if (studentDto.getPassword() != null) {
-            this.password = studentDto.getPassword();
         }
 
         if (studentDto.getImage() != null) {

@@ -17,9 +17,9 @@ public class CoachDto implements Serializable {
     private String firstName;
     private String lastName;
     private String middleName;
+    private String password;
     private Date dob;
     private String email;
-    private String password;
     private String image;
     private Date teachingSince;
     private String rank;
@@ -52,10 +52,6 @@ public class CoachDto implements Serializable {
 
         if (coach.getEmail() != null) {
             this.email = coach.getEmail();
-        }
-
-        if (coach.getPassword() != null) {
-            this.password = coach.getPassword();
         }
 
         if (coach.getImage() != null) {

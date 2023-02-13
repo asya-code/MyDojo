@@ -37,9 +37,6 @@ public class Coach {
     private String email;
 
     @Column
-    private String password;
-
-    @Column
     private String image;
 
     @Column
@@ -48,7 +45,7 @@ public class Coach {
     @Column
     private String rank;
 
-    @Column
+    @Column(columnDefinition="TEXT")
     private String description;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
@@ -82,10 +79,6 @@ public class Coach {
 
         if (coachDto.getEmail() != null) {
             this.email = coachDto.getEmail();
-        }
-
-        if (coachDto.getPassword() != null) {
-            this.password = coachDto.getPassword();
         }
 
         if (coachDto.getImage() != null) {

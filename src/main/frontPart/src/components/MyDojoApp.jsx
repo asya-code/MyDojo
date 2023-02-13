@@ -8,12 +8,15 @@ import ErrorComponent from './ErrorComponent'
 import LogoutComponent from './LogoutComponent'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import ListCoachesComponent from './ListCoachesComponent'
+import ListLessonsComponent from "./ListLessonsComponent"
+
 
 class MyDojoApp extends Component{
     render(){
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
+        const ListLessonsComponentWithNavigation = withNavigation(ListLessonsComponent)
 
         return(
             <div className="MyDojoApp">
@@ -50,6 +53,8 @@ class MyDojoApp extends Component{
                             </AuthenticatedRoute>}/>
 
                         <Route path="/coaches" element={<ListCoachesComponentWithNavigation/>}/>
+
+                        <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
 
                     </Routes>

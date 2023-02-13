@@ -62,7 +62,7 @@ class HeaderComponent extends Component {
                         <li><Link className="nav-link" to="/about">About</Link></li>
                         <li><Link className="nav-link" to="/coaches">Our coaches</Link></li>
                         <li><Link className="nav-link" to="/tournaments">Tournaments</Link></li>
-                        <li><Link className="nav-link" to="/schedule">Class Schedule</Link></li>
+                        <li><Link className="nav-link" to="/classes">Class Schedule</Link></li>
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
                         {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
