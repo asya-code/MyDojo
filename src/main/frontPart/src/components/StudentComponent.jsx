@@ -9,7 +9,7 @@ class StudentComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            studentId: this.props.param.studentId,
+            id: this.props.param.id,
             firstName: this.props.params.firstName,
             lastName: this.props.params.lastName,
             middleName: this.props.params.middleName,
@@ -25,11 +25,11 @@ class StudentComponent extends Component{
     }
 
     componentDidMount(){
-        //if(this.state.studentId === -1) {return}
+        //if(this.state.id === -1) {return}
         //let username = AuthenticationService.getLoggedInUserName()
-        StudentDataService.retrieveStudent(this.state.id)
+        StudentDataService.retrieveAllStudents()
         .then(response => this.setState({
-            studentId: this.props.param.studentId,
+            id: this.props.param.id,
             firstName: this.props.params.firstName,
             lastName: this.props.params.lastName,
             middleName: this.props.params.middleName,
@@ -41,77 +41,77 @@ class StudentComponent extends Component{
             rank: this.props.params.rank,
         }))
     }
-    validate(values){
-        let errors ={}
+    // validate(values){
+    //     let errors ={}
 
-        if(!values.firstName){
-            errors.firstName = 'First Name is required'
-        }
+    //     if(!values.firstName){
+    //         errors.firstName = 'First Name is required'
+    //     }
 
-        if(!values.lastName){
-            errors.lastName = 'Last Name is required'
-        }
+    //     if(!values.lastName){
+    //         errors.lastName = 'Last Name is required'
+    //     }
 
-        if(!values.dob){
-            errors.dob = 'Date of Birth is required'
-        }
+    //     if(!values.dob){
+    //         errors.dob = 'Date of Birth is required'
+    //     }
 
-        if(!moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter valid date of birth'
-        }
+    //     if(!moment(values.targetDate).isValid()) {
+    //         errors.targetDate = 'Enter valid date of birth'
+    //     }
 
-        if(!values.email){
-            errors.email = 'Email is required'
-        }
+    //     if(!values.email){
+    //         errors.email = 'Email is required'
+    //     }
 
-        if(!values.password){
-            errors.password = 'Password is required'
-        }
+    //     if(!values.password){
+    //         errors.password = 'Password is required'
+    //     }
 
-        return errors
-    }
-    onSubmit(values){
-        //let username = AuthenticationService.getLoggedInUserName()
-        // if (this.state.id == null){
-        //     let tempId = null
-        // } else {let tempId = this.state.id}
+    //     return errors
+    // }
+    // onSubmit(values){
+    //     //let username = AuthenticationService.getLoggedInUserName()
+    //     // if (this.state.id == null){
+    //     //     let tempId = null
+    //     // } else {let tempId = this.state.id}
     
-        let student = {
-            studentId : this.state.studentId,
-            firstName: values.firstName,
-            lastName: values.params.lastName,
-            middleName: values.params.middleName,
-            dob: values.params.dob,
-            email: values.params.email,
-            password: values.params.password,
-            image: values.params.image,
-            started: values.params.started,
-            rank: values.params.rank,
-        }
+    //     let student = {
+    //         id : this.state.id,
+    //         firstName: values.firstName,
+    //         lastName: values.params.lastName,
+    //         middleName: values.params.middleName,
+    //         dob: values.params.dob,
+    //         email: values.params.email,
+    //         password: values.params.password,
+    //         image: values.params.image,
+    //         started: values.params.started,
+    //         rank: values.params.rank,
+    //     }
 
-        if (this.state.id === null) { 
-            StudentDataService.addStudent(student)
-                .then(
-                    () => this.props.navigate('/students')
-                )   
-        }
-        else {
-            StudentDataService.updateStudent(this.state.studentId, student)
-                .then(
-                    () => this.props.navigate('/students')
-            )
-        }
-    }
+    //     if (this.state.id === null) { 
+    //         StudentDataService.addStudent(student)
+    //             .then(
+    //                 () => this.props.navigate('/students')
+    //             )   
+    //     }
+    //     else {
+    //         StudentDataService.updateStudent(this.state.id, student)
+    //             .then(
+    //                 () => this.props.navigate('/students')
+    //         )
+    //     }
+    // }
 
 
     render(){
-        let {studentId, firstName, lastName, middleName, dob, email, 
+        let {id, firstName, lastName, middleName, dob, email, 
             password, image, started, rank} = this.state
         return <div>
             <h1>Student</h1>
             <div className="container">
                 <Formik
-                    initialValues={{ studentId, firstName, lastName, middleName, 
+                    initialValues={{ id, firstName, lastName, middleName, 
                         dob, email, password, image, started, rank }}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
@@ -132,6 +132,7 @@ class StudentComponent extends Component{
                                 </fieldset>
 
                                 <fieldset className="form-group">
+
                                 <label>Last Date</label>
                                         <Field className="form-control" type="text" name="lastName"/>
                                 </fieldset>
@@ -146,10 +147,10 @@ class StudentComponent extends Component{
                                         <Field className="form-control" type="date" name="targetdobDate"/>
                                 </fieldset>
 
-                                <fieldset className="form-group">
+                                {/* <fieldset className="form-group">
                                 <label>email</label>
                                         <Field className="form-control" type="email" name="email" pattern=".+@globex\.com" size="30" required/>
-                                </fieldset>
+                                </fieldset> */}
 
                                 <fieldset className="form-group">
                                     <label>imagee</label>

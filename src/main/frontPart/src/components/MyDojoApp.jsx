@@ -22,27 +22,27 @@ class MyDojoApp extends Component{
         const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
         const ListLessonsComponentWithNavigation = withNavigation(ListLessonsComponent)
         const ListStudentsComponentWithNavigation = withNavigation(ListStudentsComponent)
-        const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
+        // const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
         const ListTournamentsComponentWithNavigation = withNavigation(ListTournamentsComponent)
         const TournamentComponentWithNavigation = withNavigation(TournamentComponent)
 
         return(
             <div className="MyDojoApp">
-                <meta charset="utf-8"/>
+                <meta charSet="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
                 <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
 
                 <script src="https://code.jquery.com/jquery.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossOrigin="anonymous" />
 
-                <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-                <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-                <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+                <script crossOrigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+                <script crossOrigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+                <script crossOrigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
                 <link rel="stylesheet" href="/src/styles.css"></link>
 
 
@@ -65,7 +65,7 @@ class MyDojoApp extends Component{
                         <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
 
-                        <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/>
+                        {/* <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
 
                         {/* <Route path="/students/:id" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
 

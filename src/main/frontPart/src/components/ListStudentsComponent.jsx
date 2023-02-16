@@ -34,6 +34,7 @@ class ListStudentsComponent extends Component{
         StudentDataService.retrieveAllStudents()
         .then(
             response => {
+                console.log(response)
                 this.setState({students : response.data})
             }
         )
@@ -93,9 +94,9 @@ class ListStudentsComponent extends Component{
                                     <td>{moment(student.started).format('MM/DD/YYYY')}</td>
                                     <td>{moment(student.dob).format('MM/DD/YYYY')}</td>
                                     <td>{student.email}</td>
-                                    <td><button className="btn btn-success btn-sm update-btn" onClick={this.updateStudentClicked(student.studentId)}> Update </button></td>
+                                    {/* <td><button className="btn btn-success btn-sm update-btn" onClick={this.updateStudentClicked(student.studentId)}> Update </button></td>
                                     <td><button className="btn btn-danger btn-sm delete-btn" onClick={this.deleteStudentClicked(student.studentId)}> Delete </button></td>                             
-                                   
+                                    */}
                                 </tr>
 
                             )
