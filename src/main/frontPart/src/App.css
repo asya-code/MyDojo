@@ -41,3 +41,37 @@
   list-style: none;
   text-align:left;
 }
+
+.admin-list {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width:100%;
+}
+
+.add-student-btn{
+  float:left
+}
+
+
+/* tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+} */
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #D6EEEE;}
+
+/* .update-btn{
+  /* align-items: center; */
+  /* justify-content: space-between; 
+}
+*/
+
+.delete-btn{
+  position: absolute;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}

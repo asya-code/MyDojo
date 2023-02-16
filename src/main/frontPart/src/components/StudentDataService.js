@@ -3,7 +3,7 @@ import axios from "axios"
 class StudentDataService{
     retrieveAllStudents(){
         console.log("retrieveAllStudents called")
-        return axios.get(`http://localhost:8080/api/students`)
+        return axios.get(`http://localhost:8080/api/students/all`)
     }
 
     retrieveStudent(studentId){
@@ -11,7 +11,7 @@ class StudentDataService{
     }
 
     addStudent(student) {
-        return axios.post(`http://localhost:8080/api/students`, student)
+        return axios.post(`http://localhost:8080/api/students/registerStudent`, student)
     }
 
     updateStudent(studentId, student){

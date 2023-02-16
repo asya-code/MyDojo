@@ -9,6 +9,7 @@ import LogoutComponent from './LogoutComponent'
 import AuthenticatedRoute from './AuthenticatedRoute'
 import ListCoachesComponent from './ListCoachesComponent'
 import ListLessonsComponent from "./ListLessonsComponent"
+import ListStudentsComponent from "./ListStudentsComponent"
 
 
 class MyDojoApp extends Component{
@@ -17,7 +18,7 @@ class MyDojoApp extends Component{
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
         const ListLessonsComponentWithNavigation = withNavigation(ListLessonsComponent)
-
+        const ListStudentsComponentWithNavigation = withNavigation(ListStudentsComponent)
         return(
             <div className="MyDojoApp">
                 <meta charset="utf-8"/>
@@ -56,6 +57,7 @@ class MyDojoApp extends Component{
 
                         <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
+                        <Route path="/students" element={<ListStudentsComponentWithNavigation/>}/>
 
                     </Routes>
 

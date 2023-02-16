@@ -11,7 +11,7 @@ class CoachDataService{
     }
 
     addCoach(coach) {
-        return axios.post(`http://localhost:8080/api/coaches`, coach)
+        return axios.post(`http://localhost:8080/api/coaches/registerCoach`, coach)
     }
 
     updateCoach(coachId, coach){

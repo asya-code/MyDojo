@@ -43,7 +43,7 @@ class ListCoachesComponent extends Component{
     }
 
     addCoachClicked(){
-        this.props.navigate('/coaches/-1')
+        this.props.navigate('/coaches/registerCoach')
     }
 
     updateCoachClicked(coachId){
