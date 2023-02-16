@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import LessonDataService from './LessonDataService'
+import TournamentDataService from './TournamentDataService'
 //import AuthenticationService from './AuthenticationService'
 
 
-class LessonComponent extends Component{
+class TournamentComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
             id: this.props.param.id,
-            lessonName: this.props.params.lessonName,
+            tournamentName: this.props.params.tournamentName,
             art: this.props.params.art,
+            age: this.props.params.age,
             day: this.props.params.day,
             time: this.props.params.time,
             description: this.props.params.description
@@ -21,11 +22,12 @@ class LessonComponent extends Component{
 
     componentDidMount(){
         // if(this.state.id === -1) {return}
-        LessonDataService.retrieveAllLessons()
+        TournamentDataService.retrieveAllTournaments()
         .then(response => this.setState({
             id: this.props.param.id,
-            lessonName: this.props.params.lessonName,
+            tournamentName: this.props.params.tournamentName,
             art: this.props.params.art,
+            age: this.props.params.age,
             day: this.props.params.day,
             time: this.props.params.time,
             description: this.props.params.description
@@ -33,12 +35,12 @@ class LessonComponent extends Component{
     }
 
     render(){
-        let {id, lessonName, art, day, time, description} = this.state
+        let {id, tournamentName, art, age, day, time, description} = this.state
         return <div>
-            <h1>Class</h1>
+            <h1>Tournaments</h1>
             <div className="container">
                 <Formik
-                    initialValues={{ id, lessonName, art, day, time, description }}
+                    initialValues={{ id, tournamentName, art, age, day, time, description }}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -48,20 +50,25 @@ class LessonComponent extends Component{
                     {
                         (props) => (
                             <Form>
-                                <ErrorMessage name='lessonName' component="div" className="alert alert-warning"/>
+                                <ErrorMessage name='tournamentName' component="div" className="alert alert-warning"/>
 
                                 <ErrorMessage name='day' component="div" className="alert alert-warning"/>
 
                                 <ErrorMessage name='time' component="div" className="alert alert-warning"/>
 
                                 <fieldset className="form-group">
-                                    <label>Class name</label>
+                                    <label>Tournament name</label>
                                         <Field className="form-control" type="text" name="className"/>
                                 </fieldset>
 
                                 <fieldset className="form-group">
                                 <label>Art</label>
                                         <Field className="form-control" type="text" name="art"/>
+                                </fieldset>
+
+                                <fieldset className="form-group">
+                                <label>Age</label>
+                                        <Field className="form-control" type="text" name="age"/>
                                 </fieldset>
 
                                 <fieldset className="form-group">
@@ -90,4 +97,4 @@ class LessonComponent extends Component{
 
 }
 
-export default LessonComponent
+export default TournamentComponent

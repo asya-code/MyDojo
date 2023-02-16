@@ -25,6 +25,7 @@ public class StudentController {
         System.out.println(studentDto.toString());
 
         Optional<UserDto> user = userService.findByEmail(studentDto.getEmail());
+
         if (!user.isPresent()) {
             userService.addByEmail(studentDto.getEmail(), studentDto.getPassword());
             user = userService.findByEmail(studentDto.getEmail());

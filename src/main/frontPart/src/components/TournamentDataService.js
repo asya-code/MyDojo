@@ -1,27 +1,27 @@
-// import axios from "axios"
+import axios from "axios"
 
-// class LessonDataService{
-//     retrieveAllLessons(){
-//         console.log("retrieveAllLessons called")
-//         return axios.get(`http://localhost:8080/api/classes`)
-//     }
+class TournamentDataService{
+    retrieveAllTournaments(){
+        console.log("retrieveAllTournaments called")
+        return axios.get(`http://localhost:8080/api/tournaments/all`)
+    }
 
-//     retrieveLesson(lessonId){
-//         return axios.get(`http://localhost:8080/api/classes/${lessonId}`)
-//     }
+    retrieveTournament(tournamentId){
+        return axios.get(`http://localhost:8080/api/tournaments/${tournamentId}`)
+    }
 
-//     addLesson(lesson) {
-//         return axios.post(`http://localhost:8080/api/classes`, lesson)
-//     }
+    addTournament(tournament) {
+        return axios.post(`http://localhost:8080/api/tournaments/new-tournament`, tournament)
+    }
 
-//     updateLesson(lessonId, lesson){
-//         return axios.put(`http://localhost:8080/api/classes/${lessonId}`, lesson)
-//     }
+    updateTournament(tournamentId, tournament){
+        return axios.put(`http://localhost:8080/api/tournaments/${tournamentId}`, tournament)
+    }
 
-//     deleteLesson(lessonId){
-//         return axios.delete(`http://localhost:8080/api/classes/${lessonId}`)
-//     }
+    deleteTournament(tournamentId){
+        return axios.delete(`http://localhost:8080/api/tournaments/${tournamentId}`)
+    }
     
-// }
+}
 
-// export default new LessonDataService()
+export default new TournamentDataService()

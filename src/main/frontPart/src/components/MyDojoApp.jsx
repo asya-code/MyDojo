@@ -10,6 +10,9 @@ import AuthenticatedRoute from './AuthenticatedRoute'
 import ListCoachesComponent from './ListCoachesComponent'
 import ListLessonsComponent from "./ListLessonsComponent"
 import ListStudentsComponent from "./ListStudentsComponent"
+import StudentComponent from "./StudentComponent"
+import ListTournamentsComponent from "./ListTournamentsComponent"
+import TournamentComponent from "./TournamentComponent";
 
 
 class MyDojoApp extends Component{
@@ -19,6 +22,10 @@ class MyDojoApp extends Component{
         const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
         const ListLessonsComponentWithNavigation = withNavigation(ListLessonsComponent)
         const ListStudentsComponentWithNavigation = withNavigation(ListStudentsComponent)
+        const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
+        const ListTournamentsComponentWithNavigation = withNavigation(ListTournamentsComponent)
+        const TournamentComponentWithNavigation = withNavigation(TournamentComponent)
+
         return(
             <div className="MyDojoApp">
                 <meta charset="utf-8"/>
@@ -57,8 +64,18 @@ class MyDojoApp extends Component{
 
                         <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
+
+                        <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/>
+
+                        {/* <Route path="/students/:id" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
+
                         <Route path="/students" element={<ListStudentsComponentWithNavigation/>}/>
 
+
+
+                        <Route path="/tournaments" element={<ListTournamentsComponentWithNavigation/>}/>
+
+                        <Route path="/tournaments/:tournamentId" element={<TournamentComponentWithNavigation/>}/>
                     </Routes>
 
                 </Router>

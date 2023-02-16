@@ -40,6 +40,9 @@
 .public-list {
   list-style: none;
   text-align:left;
+  border: 1px solid black;
+  border-collapse: collapse;
+  width:100%;
 }
 
 .admin-list {
@@ -71,7 +74,7 @@ tr:hover {
 */
 
 .delete-btn{
-  position: absolute;
-  margin-left: 10px;
-  margin-bottom: 30px;
+  /* position: absolute; */
+  /* margin-left: 10px;
+  margin-bottom: 30px; */
 }

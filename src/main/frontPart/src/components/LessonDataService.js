@@ -11,7 +11,7 @@ class LessonDataService{
     }
 
     addLesson(lesson) {
-        return axios.post(`http://localhost:8080/api/classes`, lesson)
+        return axios.post(`http://localhost:8080/api/classes/new-class`, lesson)
     }
 
     updateLesson(lessonId, lesson){

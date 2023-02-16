@@ -65,18 +65,33 @@ class ListLessonsComponent extends Component{
             <div>
                 <h1>Classes</h1>
                 <div className="container">
-                <table className="public-table">
+                <table className="public-list">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Class</th>
+                        <th>Martial Art</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Description </th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
                     <tbody>
                         {
                             this.state.lessons.map(
                                 lesson =>
                                 <tr key={lesson.lessonId}>
+                                    <td>{lesson.lessonId}</td>
                                     <td>{lesson.lessonName}</td>
                                     <td>{lesson.art}</td>
                                     <td>{lesson.day}</td>
                                     <td>{lesson.time}</td>
                                     <td>{lesson.description}</td>
                                     {/* <td>{lesson.coaches}</td> */}
+                                    <td><button className="btn btn-success btn-sm update-btn" onClick={this.updateStudentClicked}> Update </button></td>
+                                    <td><button className="btn btn-danger btn-sm delete-btn" onClick={this.deleteStudentClicked}> Delete </button></td>                             
                                 </tr>
                             )
                         }

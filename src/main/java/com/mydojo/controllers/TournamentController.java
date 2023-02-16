@@ -20,7 +20,7 @@ public class TournamentController {
     @Autowired
     private TournamentRepository tournamentRepository;
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<TournamentDto> getTournamentList(){
         return tournamentService.getTournamentList();
     }
