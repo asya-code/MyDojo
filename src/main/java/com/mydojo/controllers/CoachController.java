@@ -44,17 +44,22 @@ public class CoachController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAll(HttpSession session) throws Exception {
-        String loggedInUser = loginHelper.getLoggedInUser(session);
-        if (loggedInUser == null) {
-            return loginHelper.createLoginRedirect();
-        }
-        if (loginHelper.isUserAdminOrCoach(session)) {
-            List<CoachDto> coaches = coachService.getCoachList();
-            return loginHelper.createResponse(coaches);
-        }
-        return loginHelper.createUnauthorizedResponse();
+    public List<CoachDto> getCoachList(){
+        return coachService.getCoachList();
     }
+// secured option
+//    @GetMapping("/all")
+//    public ResponseEntity<?> getAll(HttpSession session) throws Exception {
+//        String loggedInUser = loginHelper.getLoggedInUser(session);
+//        if (loggedInUser == null) {
+//            return loginHelper.createLoginRedirect();
+//        }
+//        if (loginHelper.isUserAdminOrCoach(session)) {
+//            List<CoachDto> coaches = coachService.getCoachList();
+//            return loginHelper.createResponse(coaches);
+//        }
+//        return loginHelper.createUnauthorizedResponse();
+//    }
 
     @GetMapping("/id/{coachId}")
     public Optional<CoachDto> getCoachById(@PathVariable Long coachId){
@@ -64,6 +69,6 @@ public class CoachController {
     @PutMapping("/id/{coachId}")
     public void updateCoach(@PathVariable Long coachId,
                              @RequestBody CoachDto coachDto) {
-        coachService.updateCoach(coachDto);
+        coachService.updateCoach(coachId, coachDto);
     }
 }

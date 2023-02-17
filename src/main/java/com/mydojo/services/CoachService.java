@@ -11,7 +11,7 @@ public interface CoachService {
     List<String> addCoach(CoachDto coachDto);
 
     @Transactional
-    void updateCoach(CoachDto coachDto);
+    void updateCoach(Long coachId, CoachDto coachDto);
 
     List<CoachDto> getCoachList();
 

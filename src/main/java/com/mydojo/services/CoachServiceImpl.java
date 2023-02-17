@@ -31,8 +31,8 @@ public class CoachServiceImpl implements CoachService {
 
     @Override
     @Transactional
-    public void updateCoach(CoachDto coachDto){
-        Optional<Coach> coachOptional = coachRepository.findById(coachDto.getCoachId());
+    public void updateCoach(Long coachId, CoachDto coachDto){
+        Optional<Coach> coachOptional = coachRepository.findById(coachId);
         coachOptional.ifPresent(coach -> {
             coach.setFirstName(coachDto.getFirstName());
             coach.setLastName(coachDto.getLastName());

@@ -40,7 +40,7 @@
 .public-list {
   list-style: none;
   text-align:left;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-collapse: collapse;
   width:100%;
 }
@@ -72,9 +72,3 @@ tr:hover {
   /* justify-content: space-between; 
 }
 */
-
-.delete-btn{
-  /* position: absolute; */
-  /* margin-left: 10px;
-  margin-bottom: 30px; */
-}

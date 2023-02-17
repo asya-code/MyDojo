@@ -3,7 +3,7 @@ import axios from "axios"
 class CoachDataService{
     retrieveAllCoaches(){
         console.log("retrieveAllCoaches called")
-        return axios.get(`http://localhost:8080/api/coaches`)
+        return axios.get(`http://localhost:8080/api/coaches/all`)
     }
 
     retrieveCoach(coachId){
