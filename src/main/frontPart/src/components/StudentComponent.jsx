@@ -9,11 +9,11 @@ class StudentComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            id: this.props.param.id,
+            studentId: this.props.param.studentId,
             firstName: this.props.params.firstName,
             lastName: this.props.params.lastName,
             middleName: this.props.params.middleName,
-            dob: this.props.params.dob,
+            dob: moment(this.props.params.dob).format('MM/DD/YYYY'),
             email: this.props.params.email,
             password: this.props.params.password,
             image: this.props.params.image,
@@ -29,7 +29,7 @@ class StudentComponent extends Component{
         //let username = AuthenticationService.getLoggedInUserName()
         StudentDataService.retrieveAllStudents()
         .then(response => this.setState({
-            id: this.props.param.id,
+            id: this.props.param.studentId,
             firstName: this.props.params.firstName,
             lastName: this.props.params.lastName,
             middleName: this.props.params.middleName,
@@ -105,13 +105,15 @@ class StudentComponent extends Component{
 
 
     render(){
+        console.log()
         let {id, firstName, lastName, middleName, dob, email, 
             password, image, started, rank} = this.state
+        console.log("rendering starts")
         return <div>
             <h1>Student</h1>
             <div className="container">
                 <Formik
-                    initialValues={{ id, firstName, lastName, middleName, 
+                    initialValues={{firstName, lastName, middleName, 
                         dob, email, password, image, started, rank }}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}

@@ -22,7 +22,7 @@ class MyDojoApp extends Component{
         const ListCoachesComponentWithNavigation = withNavigation(ListCoachesComponent);
         const ListLessonsComponentWithNavigation = withNavigation(ListLessonsComponent)
         const ListStudentsComponentWithNavigation = withNavigation(ListStudentsComponent)
-        // const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
+        const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
         const ListTournamentsComponentWithNavigation = withNavigation(ListTournamentsComponent)
         const TournamentComponentWithNavigation = withNavigation(TournamentComponent)
 
@@ -32,7 +32,7 @@ class MyDojoApp extends Component{
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
                 <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet" />
 
                 <script src="https://code.jquery.com/jquery.js"></script>
@@ -67,7 +67,7 @@ class MyDojoApp extends Component{
 
                         {/* <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
 
-                        {/* <Route path="/students/:id" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
+                        <Route path="/students/:id" element={<StudentComponentWithParamAndWithNavigation/>}/>
 
                         <Route path="/students" element={<ListStudentsComponentWithNavigation/>}/>
 

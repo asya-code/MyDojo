@@ -7,7 +7,7 @@ class StudentDataService{
     }
 
     retrieveStudent(studentId){
-        return axios.get(`http://localhost:8080/api/students/${studentId}`)
+        return axios.get(`http://localhost:8080/api/students/id/${studentId}`)
     }
 
     addStudent(student) {

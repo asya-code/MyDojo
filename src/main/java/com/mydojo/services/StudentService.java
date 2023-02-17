@@ -13,4 +13,6 @@ public interface StudentService {
     List<StudentDto> getStudentList();
 
     Optional<StudentDto> getStudentById(Long studentId);
+
+    void updateStudent(Long studentId, StudentDto studentDto);
 }

@@ -1,6 +1,7 @@
 package com.mydojo.controllers;
 
 import com.mydojo.dtos.CoachDto;
+import com.mydojo.dtos.LessonDto;
 import com.mydojo.dtos.StudentDto;
 import com.mydojo.dtos.UserDto;
 import com.mydojo.services.StudentService;
@@ -45,5 +46,11 @@ public class StudentController {
     @GetMapping("/id/{studentId}")
     public Optional<StudentDto> getStudentById(@PathVariable Long studentId){
         return studentService.getStudentById(studentId);
+    }
+
+    @PutMapping("/id/{studentId}")
+    public void updateStudent(@PathVariable Long studentId,
+                             @RequestBody StudentDto studentDto){
+        studentService.updateStudent(studentId, studentDto);
     }
 }
