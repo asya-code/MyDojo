@@ -68,7 +68,7 @@ public class TournamentController {
     @PutMapping("/{tournamentId}")
     public void updateTournament(@PathVariable Long tournamentId,
                                  @RequestBody TournamentDto tournamentDto){
-        tournamentService.updateTournament(tournamentDto);
+        tournamentService.updateTournament(tournamentId, tournamentDto);
     }
 
     @DeleteMapping("/{tournamentId}")

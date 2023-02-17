@@ -17,7 +17,7 @@ public interface LessonService {
     void deleteLessonByIdCoach(Long lessonId);
 
     @Transactional
-    void updateLesson(LessonDto lessonDto);
+    void updateLesson(Long lessonId, LessonDto lessonDto);
 
     @Transactional
     void addCoachToLessonSet(Long lessonId, Long coachId);

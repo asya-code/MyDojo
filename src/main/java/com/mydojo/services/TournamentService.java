@@ -17,7 +17,7 @@ public interface TournamentService {
     void deleteTournamentByIdCoach(Long tournamentId);
 
     @Transactional
-    void updateTournament(TournamentDto tournamentDto);
+    void updateTournament(Long tournamentId, TournamentDto tournamentDto);
 
     @Transactional
     void addCoachToTournamentSet(Long tournamentId, Long coachId);

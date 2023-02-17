@@ -48,8 +48,8 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     @Transactional
-    public void updateTournament(TournamentDto tournamentDto) {
-        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentDto.getTournamentId());
+    public void updateTournament(Long tournamentId, TournamentDto tournamentDto) {
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
         tournamentOptional.ifPresent((tournament -> {
             tournament.setTournamentName(tournamentDto.getTournamentName());
             tournament.setArt(tournament.getArt());

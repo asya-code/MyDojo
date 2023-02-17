@@ -69,7 +69,7 @@ public class LessonController {
     @PutMapping("/{lessonId}")
     public void updateLesson(@PathVariable Long lessonId,
                              @RequestBody LessonDto lessonDto){
-        lessonService.updateLesson(lessonDto);
+        lessonService.updateLesson(lessonId, lessonDto);
     }
 
     @DeleteMapping("/{lessonId}")

@@ -47,8 +47,8 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public void updateLesson(LessonDto lessonDto){
-        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonDto.getLessonId());
+    public void updateLesson(Long lessonId, LessonDto lessonDto){
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
         lessonOptional.ifPresent(lesson -> {
             lesson.setLessonName(lessonDto.getLessonName());
             lesson.setArt(lessonDto.getArt());
