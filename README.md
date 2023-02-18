@@ -48,12 +48,14 @@ happening in the Judo world.
 ![Guests-Page-shield]
 
 <h5>Students' view :</h5>
+
 * Students can sign up for classes and tournaments
 * Manage their accounts
 
 ![Student-View-shield]
 
 <h5>Coaches' view :</h5>
+
 * Coaches can add new classes and tournaments
 * Sign up students to classes and tournaments
 * Manage their accounts
@@ -61,6 +63,7 @@ happening in the Judo world.
 ![Student-View-shield]
 
 <h5>Admins view :</h5>
+
 * Admin can create and edit all accounts (students, coaches)
 * Create and edit classes and tournaments
 
