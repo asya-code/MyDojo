@@ -44,22 +44,26 @@ view and update their programs, see students' attendance statistics, etc.
 happening in the Judo world.
 * Learn more about history of martial arts
 * Request a free trial class
+
 ![Guests-Page-shield]
 
 <h5>Students' view :</h5>
 * Students can sign up for classes and tournaments
 * Manage their accounts
+
 ![Student-View-shield]
 
 <h5>Coaches' view :</h5>
 * Coaches can add new classes and tournaments
 * Sign up students to classes and tournaments
 * Manage their accounts
+
 ![Student-View-shield]
 
 <h5>Admins view :</h5>
 * Admin can create and edit all accounts (students, coaches)
 * Create and edit classes and tournaments
+
 ![Coach-View-shield]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
