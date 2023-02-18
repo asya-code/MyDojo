@@ -41,27 +41,34 @@ view and update their programs, see students' attendance statistics, etc.
 <h5>Guests' view:</h5>
 * Guests can see studios class schedule, coaches working there and tournaments 
 happening in the Judo world.
+
 * Learn more about history of martial arts
+
 * Request a free trial class
 
 ![Guests-Page-shield]
 
 <h5>Students' view :</h5>
 * Students can sign up for classes and tournaments
+
 * Manage their accounts
 
 ![Student-View-shield]
 
 <h5>Coaches' view :</h5>
 * Coaches can add new classes and tournaments
+
 * Sign up students to classes and tournaments
+
 * Manage their accounts
 
 ![Student-View-shield]
 
 <h5>Admins view :</h5>
 * Admin can create and edit all accounts (students, coaches)
+
 * Create and edit classes and tournaments
+
 
 ![Coach-View-shield]
 
@@ -101,7 +108,57 @@ The security and users privileges scope implemented though the super class
  @Column
     private Boolean isAdmin;
 ```
+### Challenges
+##### Many-to-many relationship
+The tricky part of this project was Many-toMany relationships implementation, 
+mostly all classes are related to each other in many-to-many manner. 
+For example, Students can be signed up for multiple Classes and every Class 
+has multiple students; Coaches can teach multiple Classes and each Class may 
+have a few coaches teaching it.
 
+```shell
+ @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "students_lessons", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "lesson_id")})
+    private Set<Lesson> lessonSet = new HashSet<>();
+```
+
+```shell
+ @ManyToMany(mappedBy = "lessonSet")
+    private Set<Student> studentSet;
+```
+
+```shell
+ @Override
+    public void addStudentToLessonSet(Long lessonId, Long studentId) {
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        if (!lessonOptional.isPresent()) {
+            System.out.println("addStudentToLessonSet lesson not found: " + lessonId);
+            return;
+        }
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (!studentOptional.isPresent()) {
+            System.out.println("addStudentToLessonSet student not found: " + studentId);
+            return;
+        }
+        Lesson lesson = lessonOptional.get();
+        lesson.getStudentSet().add(studentOptional.get());
+        studentOptional.get().getLessonSet().add(lesson);
+        lessonRepository.saveAndFlush(lesson);
+    }
+```
+```shell
+ @Override
+    public void deleteStudentFromLesson(Long lessonId, Long studentId) {
+        Optional<Lesson> lessonOptional = lessonRepository.findById(lessonId);
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        if (lessonOptional.isPresent() && studentOptional.isPresent()) {
+            lessonOptional.get().getStudentSet().remove(studentOptional.get());
+            studentOptional.get().getLessonSet().remove(lessonOptional.get());
+            lessonRepository.saveAndFlush(lessonOptional.get());
+            studentRepository.saveAndFlush(studentOptional.get());
+        }
+    }
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
