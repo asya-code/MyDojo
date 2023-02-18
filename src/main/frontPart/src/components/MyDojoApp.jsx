@@ -65,7 +65,7 @@ class MyDojoApp extends Component{
                         <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
 
-                        {/* <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/> */}
+                        <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/>
 
                         <Route path="/students/:id" element={<StudentComponentWithParamAndWithNavigation/>}/>
 

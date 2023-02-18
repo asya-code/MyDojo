@@ -40,6 +40,7 @@ public class StudentController {
 
     @GetMapping("/all")
     public List<StudentDto> getAllStudents(){
+        System.out.println(List.of(studentService.getStudentList()));
         return studentService.getStudentList();
     }
 

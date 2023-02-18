@@ -9,7 +9,7 @@ class StudentComponent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            studentId: this.props.param.studentId,
+            id: this.props.param.id,
             firstName: this.props.params.firstName,
             lastName: this.props.params.lastName,
             middleName: this.props.params.middleName,
