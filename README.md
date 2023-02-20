@@ -2,7 +2,9 @@
 <a name="readme-top"></a>
 
 <h3 align="center">My Dojo</h3>
-<h4 align="center">Hackbright  Capstone Project</h4>
+<h4 align="center">Hackbright Academy Java Development Bootcamp 
+
+Capstone Project</h4>
 
 <!-- TABLE OF CONTENTS -->
 <details>

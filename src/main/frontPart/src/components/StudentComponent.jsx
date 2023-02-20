@@ -8,105 +8,124 @@ import moment from 'moment'
 class StudentComponent extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            id: this.props.param.id,
-            firstName: this.props.params.firstName,
-            lastName: this.props.params.lastName,
-            middleName: this.props.params.middleName,
-            dob: moment(this.props.params.dob).format('MM/DD/YYYY'),
-            email: this.props.params.email,
-            password: this.props.params.password,
-            image: this.props.params.image,
-            started: this.props.params.started,
-            rank: this.props.params.rank,
-        }
+        // this.state = {
+        //     studentId: this.props.params.studentId || "",
+        //     firstName: this.props.params.firstName || "",
+        //     lastName: this.props.params.lastName || "",
+        //     middleName: this.props.params.middleName || "",
+        //     dob: moment(this.props.params.dob).format('MM/DD/YYYY'),
+        //     email: this.props.params.email || "",
+        //     password: this.props.params.password || "",
+        //     image: this.props.params.image || "",
+        //     started: this.props.params.started || "",
+        //     rank: this.props.params.rank || "",
+        // }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
     }
 
     componentDidMount(){
+        this.setState({
+            studentId: this.props.params.studentId || "",
+            firstName: this.props.params.firstName || "",
+            lastName: this.props.params.lastName || "",
+            middleName: this.props.params.middleName || "",
+            dob: moment(this.props.params.dob).format('MM/DD/YYYY'),
+            email: this.props.params.email || "",
+            password: this.props.params.password || "",
+            image: this.props.params.image || "",
+            started: this.props.params.started || "",
+            rank: this.props.params.rank || "",
+        })
         //if(this.state.id === -1) {return}
         //let username = AuthenticationService.getLoggedInUserName()
-        StudentDataService.retrieveAllStudents()
-        .then(response => this.setState({
-            id: this.props.param.studentId,
-            firstName: this.props.params.firstName,
-            lastName: this.props.params.lastName,
-            middleName: this.props.params.middleName,
-            dob: this.props.params.dob,
-            email: this.props.params.email,
-            password: this.props.params.password,
-            image: this.props.params.image,
-            started: this.props.params.started,
-            rank: this.props.params.rank,
-        }))
+
+        // StudentDataService.retrieveAllStudents()
+        // .then(response => this.setState({
+        //     id: this.props.params.studentId,
+        //     firstName: this.props.params.firstName,
+        //     lastName: this.props.params.lastName,
+        //     middleName: this.props.params.middleName,
+        //     dob: this.props.params.dob,
+        //     email: this.props.params.email,
+        //     password: this.props.params.password,
+        //     image: this.props.params.image,
+        //     started: this.props.params.started,
+        //     rank: this.props.params.rank,
+        // }))
     }
-    // validate(values){
-    //     let errors ={}
+    validate(values){
+        let errors ={}
 
-    //     if(!values.firstName){
-    //         errors.firstName = 'First Name is required'
-    //     }
+        if(!values.firstName){
+            errors.firstName = 'First Name is required'
+        }
 
-    //     if(!values.lastName){
-    //         errors.lastName = 'Last Name is required'
-    //     }
+        if(!values.lastName){
+            errors.lastName = 'Last Name is required'
+        }
 
-    //     if(!values.dob){
-    //         errors.dob = 'Date of Birth is required'
-    //     }
+        if(!values.dob){
+            errors.dob = 'Date of Birth is required'
+        }
 
-    //     if(!moment(values.targetDate).isValid()) {
-    //         errors.targetDate = 'Enter valid date of birth'
-    //     }
+        if(!moment(values.targetDate).isValid()) {
+            errors.targetDate = 'Enter valid date of birth'
+        }
 
-    //     if(!values.email){
-    //         errors.email = 'Email is required'
-    //     }
+        if(!values.email){
+            errors.email = 'Email is required'
+        }
 
-    //     if(!values.password){
-    //         errors.password = 'Password is required'
-    //     }
+        if(!values.password){
+            errors.password = 'Password is required'
+        }
 
-    //     return errors
-    // }
-    // onSubmit(values){
-    //     //let username = AuthenticationService.getLoggedInUserName()
-    //     // if (this.state.id == null){
-    //     //     let tempId = null
-    //     // } else {let tempId = this.state.id}
-    
-    //     let student = {
-    //         id : this.state.id,
-    //         firstName: values.firstName,
-    //         lastName: values.params.lastName,
-    //         middleName: values.params.middleName,
-    //         dob: values.params.dob,
-    //         email: values.params.email,
-    //         password: values.params.password,
-    //         image: values.params.image,
-    //         started: values.params.started,
-    //         rank: values.params.rank,
-    //     }
+        return errors
+    }
+    onSubmit(){
+        console.log("values")
+    }
+    onSubmitB(values){
+        //let username = AuthenticationService.getLoggedInUserName()
+        // if (this.state.id == null){
+        //     let tempId = null
+        // } else {let tempId = this.state.id}
+        console.log("values")
+        const student = {
+            id : this.state.id,
+            firstName: values.params.firstName,
+            lastName: values.params.lastName,
+            middleName: values.params.middleName,
+            dob: values.params.dob,
+            email: values.params.email,
+            password: values.params.password,
+            image: values.params.image,
+            started: values.params.started,
+            rank: values.params.rank,
+        }
 
-    //     if (this.state.id === null) { 
-    //         StudentDataService.addStudent(student)
-    //             .then(
-    //                 () => this.props.navigate('/students')
-    //             )   
-    //     }
-    //     else {
-    //         StudentDataService.updateStudent(this.state.id, student)
-    //             .then(
-    //                 () => this.props.navigate('/students')
-    //         )
-    //     }
-    // }
+        if (this.state.id === null) { 
+            StudentDataService.addStudent(student)
+                .then(
+                    () => this.props.navigate('/students')
+                )   
+        }
+        else {
+            StudentDataService.updateStudent(this.state.id, student)
+                .then(
+                    () => this.props.navigate('/students')
+            )
+        }
+    }
 
-
+// render(){
+//     return <h1>Form</h1>
+// }
     render(){
-        console.log()
-        let {id, firstName, lastName, middleName, dob, email, 
+        console.log(this.state)
+        if (this.state === null){ return}
+        const {firstName, lastName, middleName, dob, email, 
             password, image, started, rank} = this.state
         console.log("rendering starts")
         return <div>
@@ -135,7 +154,7 @@ class StudentComponent extends Component{
 
                                 <fieldset className="form-group">
 
-                                <label>Last Date</label>
+                                <label>Last Name</label>
                                         <Field className="form-control" type="text" name="lastName"/>
                                 </fieldset>
 
@@ -155,7 +174,7 @@ class StudentComponent extends Component{
                                 </fieldset> */}
 
                                 <fieldset className="form-group">
-                                    <label>imagee</label>
+                                    <label>image</label>
                                         <Field className="form-control" type="text" name="image"/>
                                 </fieldset>
 
