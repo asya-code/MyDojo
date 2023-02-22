@@ -30,8 +30,10 @@ public class Student {
     @Column
     private String middleName;
 
+//    @Column
+//    private Date dob;
     @Column
-    private Date dob;
+    private String dob;
 
     @Column(unique = true)
     private String email;
@@ -39,8 +41,10 @@ public class Student {
     @Column
     private String image;
 
+//    @Column
+//    private Date started;
     @Column
-    private Date started;
+    private String started;
 
     @Column
     private String rank;
@@ -53,6 +57,18 @@ public class Student {
     @JoinTable(name = "students_tournaments", joinColumns = {@JoinColumn(name = "student_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
 
     private Set<Tournament> tournamentSet = new HashSet<>();
+
+    public Student(String firstName, String lastName, String middleName, String dob,
+                 String email, String image, String started, String rank){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.dob = dob;
+        this.email = email;
+        this.image = image;
+        this.started = started;
+        this.rank = rank;
+    }
 
     public Student(StudentDto studentDto) {
         if (studentDto.getStudentId() != null) {

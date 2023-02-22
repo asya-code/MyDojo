@@ -20,7 +20,7 @@ public class LessonDto implements Serializable {
     private String lessonName;
     private String art;
     private String day;
-    private Time time;
+    private String time;
     private String description;
 
     private Set<StudentDto> studentDtoSet = new HashSet<>();

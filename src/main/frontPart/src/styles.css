@@ -4,3 +4,11 @@
   .navbar-brend{
     font-family: 'Shadows Into Light', cursive; font-size: x-large;
   }
+
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }

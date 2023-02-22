@@ -13,6 +13,8 @@ import ListStudentsComponent from "./ListStudentsComponent"
 import StudentComponent from "./StudentComponent"
 import ListTournamentsComponent from "./ListTournamentsComponent"
 import TournamentComponent from "./TournamentComponent";
+import HomeComponent from "./HomeComponent";
+import AboutComponent from "./AboutComponent";
 
 
 class MyDojoApp extends Component{
@@ -25,7 +27,8 @@ class MyDojoApp extends Component{
         const StudentComponentWithParamAndWithNavigation = withParam(withNavigation(StudentComponent))
         const ListTournamentsComponentWithNavigation = withNavigation(ListTournamentsComponent)
         const TournamentComponentWithNavigation = withNavigation(TournamentComponent)
-
+        const HomeComponentWithNavigation = withNavigation(HomeComponent)
+        const AboutComponentWithNavigation = withNavigation(AboutComponent)
         return(
             <div className="MyDojoApp">
                 <meta charSet="utf-8"/>
@@ -49,7 +52,9 @@ class MyDojoApp extends Component{
                 <Router>
                     <HeaderComponentWithNavigation/>
                     <Routes>
-                        <Route path="/" element={<LoginComponentWithNavigation/>}/>
+                        <Route path="/" element={<HomeComponentWithNavigation/>}/>
+
+                        <Route path="/about" element={<AboutComponentWithNavigation/>}/>
 
                         <Route path="/login" element={<LoginComponentWithNavigation/>}/>
 

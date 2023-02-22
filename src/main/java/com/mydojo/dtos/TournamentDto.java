@@ -22,8 +22,10 @@ public class TournamentDto implements Serializable {
     private String description;
     private String art;
     private String age;
-    private Date date;
-    private Time time;
+//    private Date date;
+    private String date;
+//    private Time time;
+    private String time;
 
     private Set<StudentDto> studentDtoSet;
     private Set<CoachDto> coachDtoSet;

@@ -11,6 +11,8 @@ class StudentDataService{
     }
 
     addStudent(student) {
+        console.log("addStudent called")
+        console.log("student:", student);
         return axios.post(`http://localhost:8080/api/students/registerStudent`, student)
     }
 

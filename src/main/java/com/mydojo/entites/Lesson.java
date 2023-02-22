@@ -32,7 +32,7 @@ public class Lesson {
     private String day;
 
     @Column
-    private Time time;
+    private String time;
 
     @Column
     private String description;
@@ -43,6 +43,13 @@ public class Lesson {
     @ManyToMany(mappedBy = "lessonSet")
     private Set<Coach> coachSet;
 
+    public Lesson(String lessonName, String art, String day, String time, String description){
+        this.lessonName = lessonName;
+        this.art = art;
+        this.day = day;
+        this.time = time;
+        this.description = description;
+    }
     public Lesson(LessonDto lessonDto){
         if (lessonDto.getLessonId() != null) {
             this.lessonId = lessonDto.getLessonId();

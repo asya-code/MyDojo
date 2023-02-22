@@ -21,7 +21,7 @@ public class CoachDto implements Serializable {
     private Date dob;
     private String email;
     private String image;
-    private Date teachingSince;
+    private String teachingSince;
     private String rank;
 
     private String description;

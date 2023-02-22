@@ -53,7 +53,8 @@ public class TournamentServiceImpl implements TournamentService {
         tournamentOptional.ifPresent((tournament -> {
             tournament.setTournamentName(tournamentDto.getTournamentName());
             tournament.setArt(tournament.getArt());
-            tournament.setDate((Date) tournamentDto.getDate());
+//            tournament.setDate((Date) tournamentDto.getDate());
+            tournament.setDate((tournamentDto.getDate()));
             tournament.setTime(tournamentDto.getTime());
             tournament.setAge(tournament.getAge());
             tournament.setDescription(tournament.getDescription());

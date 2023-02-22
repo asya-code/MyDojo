@@ -18,10 +18,12 @@ public class StudentDto implements Serializable {
     private String lastName;
     private String middleName;
     private String password;
-    private Date dob;
+//    private Date dob;
+    private String dob;
     private String email;
     private String image;
-    private Date started;
+//    private Date started;
+    private String started;
     private String rank;
 
     private Set<LessonDto> lessonDtoSet;

@@ -40,7 +40,7 @@ public class Coach {
     private String image;
 
     @Column
-    private Date teachingSince;
+    private String teachingSince;
 
     @Column
     private String rank;
@@ -56,6 +56,19 @@ public class Coach {
     @JoinTable(name = "coaches_tournaments", joinColumns = {@JoinColumn(name = "coach_id")}, inverseJoinColumns = {@JoinColumn(name = "tournament_id")})
 
     private Set<Tournament> tournamentSet = new HashSet<>();
+
+    public Coach(String firstName, String lastName, String middleName, Date dob,
+                 String email, String image, String teachingSince, String rank, String description){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.dob = dob;
+        this.email = email;
+        this.image = image;
+        this.teachingSince = teachingSince;
+        this.rank = rank;
+        this.description = description;
+    }
 
     public Coach (CoachDto coachDto) {
         if (coachDto.getCoachId() != null) {

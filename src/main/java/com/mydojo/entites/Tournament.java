@@ -36,18 +36,31 @@ public class Tournament {
     @Column
     private String age;
 
-    @Column(name = "\"date\"")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date date;
-
+//    @Column(name = "\"date\"")
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    private Date date;
     @Column
-    private Time time;
+    private String date;
+
+//    @Column
+//    private Time time;
+    @Column
+    private String time;
 
     @ManyToMany(mappedBy = "tournamentSet")
     private Set<Coach> coachSet;
 
     @ManyToMany(mappedBy = "tournamentSet")
     private Set<Student> studentSet;
+
+    public Tournament(String tournamentName, String description, String art, String age, String date, String time){
+        this.tournamentName = tournamentName;
+        this.description = description;
+        this.art = art;
+        this.age = age;
+        this.date = date;
+        this.time = time;
+    }
 
     public Tournament(TournamentDto tournamentDto) {
         if (tournamentDto.getTournamentId() != null) {
