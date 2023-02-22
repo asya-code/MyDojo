@@ -65,6 +65,9 @@ class ListTournamentsComponent extends Component{
             <div>
                 <h1>Tournaments</h1>
                 <div className="container">
+                <span className="add-student-btn">
+                    <button className="btn btn-success btn-sm" onClick={this.addStudentClicked}> Add Tournament</button>
+                </span>
                 <table className="public-list">
                     <tbody>
                         {

@@ -22,6 +22,21 @@ class LessonDataService{
         return axios.delete(`http://localhost:8080/api/classes/${lessonId}`)
     }
     
+    addStudentToLesson(lessonId, student){
+        return axios.post(`http://localhost:8080/api/classes/${lessonId}/add-student`, student)
+    }
+
+    removeStudentFromLesson(lessonId, studentId) {
+        return axios.delete(`http://localhost:8080/api/classes/${lessonId}/students/${studentId}`)
+    }
+
+    addCoachToLesson(lessonId, coach){
+        return axios.post(`http://localhost:8080/api/classes/${lessonId}/add-coach`, coach)
+    }
+
+    removeCoachFromLesson(lessonId, coachId) {
+        return axios.delete(`http://localhost:8080/api/classes/${lessonId}/coaches/${coachId}`)
+    }
 }
 
 export default new LessonDataService()

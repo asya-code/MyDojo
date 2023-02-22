@@ -89,6 +89,4 @@ public class TournamentController {
         System.out.println("addStudentToTournamentSet " + tournamentId + " : " + studentDto);
         tournamentService.addStudentToTournamentSet(tournamentId, studentDto.getStudentId());
     }
-//    @PostMapping("/{studentId}/tournaments")
-//    public void addLessonForStudent()
 }

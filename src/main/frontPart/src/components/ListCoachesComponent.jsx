@@ -69,7 +69,6 @@ class ListCoachesComponent extends Component{
                             {
                                 this.state.coaches.map(
                                     coach =>
-                                    // <li key={coach.coachId}>
                                        <li> 
                                         <div class="row" key={coach.coachId}>
                                             <div className="column">

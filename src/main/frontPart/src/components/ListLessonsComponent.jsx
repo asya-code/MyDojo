@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import LessonDataService from './LessonDataService'
-import moment from "moment"
 
 class ListLessonsComponent extends Component{
     constructor(props){
@@ -65,6 +64,9 @@ class ListLessonsComponent extends Component{
             <div>
                 <h1>Classes</h1>
                 <div className="container">
+                {/* <span className="add-student-btn">
+                    <button className="btn btn-success btn-sm" onClick={this.addStudentClicked}> Add Class</button>
+                </span> */}
                 <table className="public-list">
                 <thead>
                     <tr>
@@ -87,14 +89,14 @@ class ListLessonsComponent extends Component{
                                 <tr key={lesson.lessonId}>
                                     {/* <td>{lesson.lessonId}</td> */}
                                     <td>{lesson.lessonName}</td>
-                                    <td>{lesson.art}</td>
-                                    <td>{lesson.day}</td>
-                                    <td>{lesson.time}</td>
+                                    <td>{lesson.art} </td>
+                                    <td> {lesson.day}  </td>
+                                    <td> {lesson.time}  </td>
                                     <td>{lesson.description}</td>
                                     {/* <td>{lesson.coaches}</td> */}
 
                                     {/* <td><button className="btn btn-success btn-sm update-btn" onClick={() => this.updateLessonClicked(lesson.lessonId)}> Update </button></td>
-                                    <td><button className="btn btn-danger btn-sm delete-btn" onClick={() => this.deleteLessonClicked(lesson.lessonId)}> Delete </button></td>                              */}
+                                    <td><button className="btn btn-danger btn-sm delete-btn" onClick={() => this.deleteLessonClicked(lesson.lessonId)}> Delete </button></td> */}
                                     {/* <td><button className="btn btn-success btn-sm update-btn" onClick={() => this.addStudentToLessonClicked(student.studenId, lesson.lessonId)}>Sign Up</button></td> */}
                                     <td><button className="btn btn-success btn-sm update-btn">SignUp</button></td>
                                 </tr>

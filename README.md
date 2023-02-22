@@ -38,7 +38,7 @@ view and update their programs, see students' attendance statistics, etc.
 
 
 
-![Schedule-Page-shield]
+![Home-Page-shield]
 
 <h5>Guests' view:</h5>
 
@@ -47,14 +47,14 @@ happening in the Judo world.
 * Learn more about history of martial arts
 * Request a free trial class
 
-![Guests-Page-shield]
+![Coaches-Page-shield]
 
 <h5>Students' view :</h5>
 
 * Students can sign up for classes and tournaments
 * Manage their accounts
 
-![Student-View-shield]
+![Classes-signup-shield]
 
 <h5>Coaches' view :</h5>
 
@@ -62,14 +62,14 @@ happening in the Judo world.
 * Sign up students to classes and tournaments
 * Manage their accounts
 
-![Student-View-shield]
+![Add-tournament-shield]
 
 <h5>Admins view :</h5>
 
 * Admin can create and edit all accounts (students, coaches)
 * Create and edit classes and tournaments
 
-![Coach-View-shield]
+![Admin-shield]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -259,8 +259,8 @@ $ git clone https://github.com/asya-code/MyDojo.git
 [SpringBoot-url]: https://spring.io/
 [Hibernate-shield]: https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white
 [Hibernate-url]: https://hibernate.org/
-[Schedule-Page-shield]: http://www.dawave.com/images/kano.jpg?crc=4241564927
-[Guests-Page-shield]: http://www.dawave.com/images/kano.jpg?crc=4241564927
-[Student-View-shield]: http://www.dawave.com/images/kano.jpg?crc=4241564927
-[Coach-View-shield]: http://www.dawave.com/images/kano.jpg?crc=4241564927
-[Admin-View-shield]: http://www.dawave.com/images/kano.jpg?crc=4241564927
+[Home-Page-shield]: src/main/frontPart/public/home.png
+[Coaches-Page-shield]: src/main/frontPart/public/coaches.png
+[Classes-signup-shield]: src/main/frontPart/public/classes-signup.png
+[Add-tournament-shield]: src/main/frontPart/public/add-tournament.png
+[Admin-shield]: src/main/frontPart/public/admin.png

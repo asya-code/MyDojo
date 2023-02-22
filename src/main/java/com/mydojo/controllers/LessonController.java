@@ -51,6 +51,12 @@ public class LessonController {
         return lessonService.getStudentListByLessonId(lessonId);
     }
 
+    @PostMapping("/{lessonId}/add-student")
+    public void addStudentToLessonSet(@PathVariable Long lessonId,
+                                      @RequestBody StudentDto studentDto){
+        System.out.println("/n" + " addStudentToLessonSet " + lessonId + " : " + studentDto);
+        lessonService.addStudentToLessonSet(lessonId, studentDto.getStudentId());
+    }
     @DeleteMapping("/{lessonId}/students/{studentId}")
     public void deleteStudentFromLesson(@PathVariable Long lessonId, @PathVariable Long studentId) {
         lessonService.deleteStudentFromLesson(lessonId, studentId);
@@ -84,12 +90,4 @@ public class LessonController {
         lessonService.addCoachToLessonSet(lessonId, coachDto.getCoachId());
     }
 
-    @PostMapping("/{lessonId}/add-student")
-    public void addStudentToLessonSet(@PathVariable Long lessonId,
-                              @RequestBody StudentDto studentDto){
-        System.out.println("/n" + " addStudentToLessonSet " + lessonId + " : " + studentDto);
-        lessonService.addStudentToLessonSet(lessonId, studentDto.getStudentId());
-    }
-//    @PostMapping("/{studentId}/classes")
-//    public void addLessonForStudent()
 }
