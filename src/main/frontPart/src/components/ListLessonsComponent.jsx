@@ -76,6 +76,8 @@ class ListLessonsComponent extends Component{
                         <th>Description </th>
                         {/* <th>Update</th>
                         <th>Delete</th> */}
+                        <th>Sing Up</th>
+                        {/* <th>Sing Out</th> */}
                     </tr>
                 </thead>
                     <tbody>
@@ -90,8 +92,11 @@ class ListLessonsComponent extends Component{
                                     <td>{lesson.time}</td>
                                     <td>{lesson.description}</td>
                                     {/* <td>{lesson.coaches}</td> */}
+
                                     {/* <td><button className="btn btn-success btn-sm update-btn" onClick={() => this.updateLessonClicked(lesson.lessonId)}> Update </button></td>
                                     <td><button className="btn btn-danger btn-sm delete-btn" onClick={() => this.deleteLessonClicked(lesson.lessonId)}> Delete </button></td>                              */}
+                                    {/* <td><button className="btn btn-success btn-sm update-btn" onClick={() => this.addStudentToLessonClicked(student.studenId, lesson.lessonId)}>Sign Up</button></td> */}
+                                    <td><button className="btn btn-success btn-sm update-btn">SignUp</button></td>
                                 </tr>
                             )
                         }

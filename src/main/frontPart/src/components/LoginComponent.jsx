@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import AuthenticationService from "./AuthenticationService"
+import UserDataService from "./UserDataService"
 
 class LoginComponent extends Component{
     constructor(props){
@@ -23,8 +24,9 @@ class LoginComponent extends Component{
     }
 
     loginClicked(){
-        //hardcoded:
-        if(this.state.username==='in28minutes' && this.state.password==='dummy'){
+        const user = UserDataService.retrieveUser(this.state.username)
+        const savedPassword = user.password
+        if(user && this.state.password===savedPassword){
             AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password)
             this.props.navigate(`/welcome/${this.state.username}`)
         } else {
@@ -44,7 +46,7 @@ class LoginComponent extends Component{
             <div className="container">
             {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
             {this.state.showSuccessMessage && <div>Login Successful!</div>}
-            User Name: <input type="text" name="username" value={this.state.username} onChange={this.hadleChange}/>
+            Email: <input type="text" name="username" value={this.state.username} onChange={this.hadleChange}/>
             Password: <input type="password" name="password" value={this.state.password} onChange={this.hadleChange}/>
             <button className ="btn btn-success" onClick={this.loginClicked}>Login</button>
             </div>

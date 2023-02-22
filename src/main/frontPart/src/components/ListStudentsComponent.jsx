@@ -72,7 +72,7 @@ class ListStudentsComponent extends Component{
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Middle Name</th>
+                        {/* <th>Middle Name</th> */}
                         <th>rank</th>
                         <th>started </th>
                         <th>DOB</th>
@@ -89,7 +89,7 @@ class ListStudentsComponent extends Component{
                                     <td>{student.studentId}</td>
                                     <td>{student.firstName}</td>
                                     <td>{student.lastName}</td>
-                                    <td>{student.middleName}</td>
+                                    {/* <td>{student.middleName}</td> */}
                                     <td>{student.rank}</td>
                                     <td>{moment(student.started).format('MM/DD/YYYY')}</td>
                                     <td>{moment(student.dob).format('MM/DD/YYYY')}</td>

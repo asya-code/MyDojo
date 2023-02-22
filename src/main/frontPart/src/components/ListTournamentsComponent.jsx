@@ -65,20 +65,22 @@ class ListTournamentsComponent extends Component{
             <div>
                 <h1>Tournaments</h1>
                 <div className="container">
-                <table className="public-table">
+                <table className="public-list">
                     <tbody>
                         {
                             this.state.tournaments.map(
                                 tournament =>
-                                <tr key={tournament.tournamentId}>
-                                    <td>{tournament.tournamentName}</td>
-                                    <td>{tournament.art}</td>
-                                    <td>{tournament.age}</td>
-                                    <td>{tournament.day}</td>
-                                    <td>{tournament.time}</td>
-                                    <td>{tournament.description}</td>
-                                    {/* <td>{tournament.coaches}</td> */}
-                                </tr>
+                                <li>
+                                <div class="row" key={tournament.tournamentId}>
+                                    <h3>{tournament.tournamentName}</h3>
+                                    <h5>{tournament.art} {tournament.age}</h5>
+                                    <div>
+                                        <h6>Date: {tournament.date}   Time: {tournament.time}</h6>
+                                        </div>
+                                    <div>{tournament.description}</div>
+                                    <img src="https://cf-images.us-east-1.prod.boltdns.net/v1/static/6057994453001/5727f920-e19c-4354-ae84-8f8778b475c8/53eae407-80a2-4d12-aef5-1cab69de493b/1280x720/match/image.jpg"></img>
+                                </div>
+                                </li>
                             )
                         }
                     </tbody>

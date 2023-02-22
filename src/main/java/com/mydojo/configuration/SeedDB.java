@@ -112,7 +112,8 @@ public class SeedDB implements CommandLineRunner{
         lessonRepository.saveAndFlush(lesson15);
 
         System.out.println("****************************Generation Tournaments**************************************");
-        Tournament tournament = new Tournament("Youth National Championships", "USA National Championships in Lubbock, Texas", "Judo", "youth", "March 18-19", "TBD");
+        Tournament tournament = new Tournament("Youth National Championships", "USA Judo is pleased to welcome you to the Youth National Championships in Lubbock, Texas. Competition will take place at Lubbock Memorial Civic Center and will serve as the trials for both the Junior and Cadet Pan American/Oceania Championships and the U15 and U13 Pan American Championships\n" +
+                "\n", "Judo", "Youth", "March 18-19", "TBD");
                 //String tournamentName, String description, String art, String age, String date, String time
         tournamentRepository.saveAndFlush(tournament);
 

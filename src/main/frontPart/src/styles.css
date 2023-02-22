@@ -12,3 +12,14 @@
   .column {
     flex: 50%;
   }
+
+  .div {
+    width:100% ;
+  }
+  
+  .div:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
+  

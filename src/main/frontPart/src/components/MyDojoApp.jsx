@@ -15,7 +15,7 @@ import ListTournamentsComponent from "./ListTournamentsComponent"
 import TournamentComponent from "./TournamentComponent";
 import HomeComponent from "./HomeComponent";
 import AboutComponent from "./AboutComponent";
-
+import RegistrationComponent from "./RegistrationComponent"
 
 class MyDojoApp extends Component{
     render(){
@@ -29,6 +29,7 @@ class MyDojoApp extends Component{
         const TournamentComponentWithNavigation = withNavigation(TournamentComponent)
         const HomeComponentWithNavigation = withNavigation(HomeComponent)
         const AboutComponentWithNavigation = withNavigation(AboutComponent)
+        const RegistrationComponentWithNavigation = withNavigation(RegistrationComponent)
         return(
             <div className="MyDojoApp">
                 <meta charSet="utf-8"/>
@@ -48,7 +49,7 @@ class MyDojoApp extends Component{
                 <script crossOrigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
                 <link rel="stylesheet" href="/src/styles.css"></link>
 
-
+                
                 <Router>
                     <HeaderComponentWithNavigation/>
                     <Routes>
@@ -69,6 +70,7 @@ class MyDojoApp extends Component{
 
                         <Route path="/classes" element={<ListLessonsComponentWithNavigation/>}/>
 
+                        <Route path="/register" element={<RegistrationComponentWithNavigation/>}/>
 
                         <Route path="/students/new-student" element={<StudentComponentWithParamAndWithNavigation/>}/>
 

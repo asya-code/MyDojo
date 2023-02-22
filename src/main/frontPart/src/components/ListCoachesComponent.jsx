@@ -69,16 +69,23 @@ class ListCoachesComponent extends Component{
                             {
                                 this.state.coaches.map(
                                     coach =>
-                                    <li key={coach.coachId}>
-                                        <>
-                                        <p>
-                                        <div>{coach.firstName} {coach.lastName} {coach.rank} belt</div>
-                                            <div> Teaching since {coach.teachingSince}</div>
-                                            <div>{coach.description}</div>
-                                            <img src={coach.image}/>
-                                        </p>
-                                        </>
+                                    // <li key={coach.coachId}>
+                                       <li> 
+                                        <div class="row" key={coach.coachId}>
+                                            <div className="column">
+                                                <h3 className="coachName">{coach.firstName} {coach.lastName}</h3>
+                                                <h6> {coach.rank}</h6>
+                                                <h6> Teaching since {coach.teachingSince}</h6>
+                                                <div>{coach.description}</div>
+                                            </div>
+                                            
+                                            <div className="column">
+                                                <img src={coach.image}/>
+                                            </div>
+                                        </div>
+                                        <br></br>
                                     </li>
+                                    
 
                                 )
                             }

@@ -3,7 +3,6 @@ package com.mydojo.controllers;
 import com.mydojo.dtos.UserDto;
 import com.mydojo.services.CoachService;
 import com.mydojo.services.UserService;
-import jakarta.jws.soap.SOAPBinding;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -69,5 +68,15 @@ public class UserController {
     @GetMapping("/{id}")
     public Optional<UserDto> findById(@PathVariable Long id){
        return userService.findById(id);
+    }
+
+    @GetMapping("/{email}")
+    public Optional<UserDto> findByEmail(@PathVariable String email){
+        return userService.findByEmail(email);
+    }
+
+    @PostMapping("/registerUser")
+    public void registerUser(@RequestBody com.mydojo.dtos.UserDto userDto){
+        userService.addByEmail(userDto.getEmail(), userDto.getPassword());
     }
 }

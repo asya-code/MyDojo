@@ -46,28 +46,36 @@
 }
 
 .admin-list {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-collapse: collapse;
   width:100%;
+  text-align: left;
 }
 
 .add-student-btn{
   float:left
 }
 
+thead {
+  border-bottom: 1px solid #060606;
+  border-top: 1px solid #0b0b0b;
+}
 
-/* tr:nth-child(even) {
-  background-color: rgba(150, 212, 212, 0.4);
+/* td, th {
+  border: 1px solid #999;
 } */
 
-tr {
+/* tr {
   border-bottom: 1px solid #ddd;
-}
+  border-top: 1px solid #ddd;
+} */
 
 tr:hover {
   background-color: #D6EEEE;}
 
-
+/* .MyDojoApp {
+  background-image: url('./frontPart/public/background.jpg')
+} */
  
 /* .update-btn{
   /* align-items: center; */
